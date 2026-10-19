@@ -1,0 +1,1598 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wolvo Logistics — Turnaround Plan</title>
+    <style>
+      :root {
+        --bg: #f6f7fb;
+        --panel: #fff;
+        --text: #172033;
+        --muted: #667085;
+        --line: #e5e7eb;
+        --accent: #3157d5;
+        --accent-soft: #edf1ff;
+        --good: #087443;
+        --bad: #b42318;
+        --warn: #8a5a00;
+        --shadow: 0 8px 28px rgba(20, 30, 60, 0.06);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 24px;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          15px/1.6 system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 260px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        background: #101828;
+        color: #f8fafc;
+        padding: 24px 16px;
+      }
+      .brand {
+        font-weight: 800;
+        font-size: 17px;
+        letter-spacing: 0.2px;
+        margin: 0 10px 4px;
+      }
+      .brand-sub {
+        color: #98a2b3;
+        font-size: 12px;
+        margin: 0 10px 24px;
+      }
+      .nav-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+        color: #98a2b3;
+        margin: 20px 10px 8px;
+      }
+      .nav a {
+        display: block;
+        text-decoration: none;
+        color: #d0d5dd;
+        padding: 9px 10px;
+        border-radius: 8px;
+        font-size: 13px;
+        margin: 2px 0;
+      }
+      .nav a:hover,
+      .nav a.active {
+        background: #26324b;
+        color: white;
+      }
+      .main {
+        max-width: 1120px;
+        width: 100%;
+        padding: 36px clamp(18px, 4vw, 54px) 80px;
+        margin: auto;
+      }
+      .eyebrow {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+      .hero {
+        background: linear-gradient(135deg, #fff, #eef2ff);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+        margin-bottom: 26px;
+      }
+      .hero h1 {
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1.12;
+        margin: 8px 0 12px;
+        letter-spacing: -1.1px;
+      }
+      .hero p {
+        color: #475467;
+        max-width: 760px;
+        margin: 0;
+      }
+      .pills {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .pill {
+        font-size: 12px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 10px;
+        color: #344054;
+      }
+      .section {
+        margin: 34px 0 48px;
+      }
+      .section h2 {
+        font-size: 25px;
+        letter-spacing: -0.5px;
+        margin: 0 0 6px;
+      }
+      .section-intro {
+        color: var(--muted);
+        margin: 0 0 20px;
+        max-width: 800px;
+      }
+      .subsection {
+        margin: 24px 0;
+      }
+      .subsection h3 {
+        font-size: 17px;
+        margin: 0 0 8px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 0 2px 10px rgba(16, 24, 40, 0.025);
+        min-width: 0;
+      }
+      .span-3 {
+        grid-column: span 3;
+      }
+      .span-4 {
+        grid-column: span 4;
+      }
+      .span-5 {
+        grid-column: span 5;
+      }
+      .span-6 {
+        grid-column: span 6;
+      }
+      .span-7 {
+        grid-column: span 7;
+      }
+      .span-8 {
+        grid-column: span 8;
+      }
+      .span-12 {
+        grid-column: span 12;
+      }
+      .metric-label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 5px;
+      }
+      .metric {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.7px;
+        line-height: 1.2;
+      }
+      .metric.small {
+        font-size: 22px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .tiny {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .callout {
+        border-left: 3px solid var(--accent);
+        background: var(--accent-soft);
+        padding: 13px 15px;
+        border-radius: 0 10px 10px 0;
+        margin: 14px 0;
+      }
+      .callout.warning {
+        border-color: #d97706;
+        background: #fff7e8;
+      }
+      .callout.good {
+        border-color: #12b76a;
+        background: #ecfdf3;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 13px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 10px 9px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        color: #475467;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+      .formula {
+        display: block;
+        background: #f2f4f7;
+        border: 1px solid #eaecf0;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font:
+          13px/1.5 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        overflow-wrap: anywhere;
+      }
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+      }
+      .control {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 12px;
+      }
+      .control label {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 13px;
+        font-weight: 650;
+        margin-bottom: 10px;
+      }
+      .control output {
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+      .control input[type="range"] {
+        width: 100%;
+        accent-color: var(--accent);
+      }
+      .control input[type="number"] {
+        width: 100%;
+        padding: 9px;
+        border: 1px solid #d0d5dd;
+        border-radius: 7px;
+        font: inherit;
+      }
+      .results {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .result {
+        background: #f8fafc;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 13px;
+      }
+      .result .metric {
+        font-size: 23px;
+      }
+      .chart-wrap {
+        height: 260px;
+        position: relative;
+      }
+      .chart-wrap canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .barlist {
+        display: grid;
+        gap: 12px;
+      }
+      .barrow {
+        display: grid;
+        grid-template-columns: 85px 1fr 72px;
+        gap: 10px;
+        align-items: center;
+        font-size: 12px;
+      }
+      .bartrack {
+        height: 10px;
+        background: #eef0f4;
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .barfill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 99px;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 99px;
+        padding: 3px 8px;
+        font-size: 11px;
+        font-weight: 700;
+        background: #f2f4f7;
+        color: #344054;
+      }
+      .status.urgent {
+        background: #fff0ee;
+        color: #b42318;
+      }
+      .status.next {
+        background: #fff7e8;
+        color: #8a5a00;
+      }
+      .status.done {
+        background: #ecfdf3;
+        color: #087443;
+      }
+      .task {
+        display: flex;
+        gap: 10px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .task:last-child {
+        border-bottom: 0;
+      }
+      .task input {
+        margin-top: 5px;
+        accent-color: var(--accent);
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+      .task strong {
+        display: block;
+      }
+      .task p {
+        margin: 3px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .sources a {
+        color: var(--accent);
+        overflow-wrap: anywhere;
+      }
+      .sources li {
+        margin: 10px 0;
+      }
+      .footer {
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .mobile-head {
+        display: none;
+      }
+      .btn {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--text);
+        padding: 9px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 650;
+      }
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .btn:hover {
+        filter: brightness(0.97);
+      }
+      .action-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: relative;
+          height: auto;
+          padding: 14px 16px;
+        }
+        .brand-sub {
+          margin-bottom: 12px;
+        }
+        .nav {
+          display: flex;
+          overflow: auto;
+          gap: 5px;
+          padding-bottom: 3px;
+        }
+        .nav-label {
+          display: none;
+        }
+        .nav a {
+          white-space: nowrap;
+        }
+        .main {
+          padding-top: 22px;
+        }
+        .span-3,
+        .span-4,
+        .span-5,
+        .span-6,
+        .span-7,
+        .span-8 {
+          grid-column: span 6;
+        }
+        .results {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 560px) {
+        .hero {
+          padding: 22px;
+        }
+        .span-3,
+        .span-4,
+        .span-5,
+        .span-6,
+        .span-7,
+        .span-8,
+        .span-12 {
+          grid-column: span 12;
+        }
+        .controls {
+          grid-template-columns: 1fr;
+        }
+        .results {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .section h2 {
+          font-size: 22px;
+        }
+        .barrow {
+          grid-template-columns: 72px 1fr 62px;
+        }
+      }
+      @media print {
+        .sidebar,
+        .action-row,
+        .btn {
+          display: none !important;
+        }
+        .layout {
+          display: block;
+        }
+        .main {
+          max-width: none;
+          padding: 0;
+        }
+        .hero,
+        .card {
+          box-shadow: none;
+          break-inside: avoid;
+        }
+        .section {
+          break-inside: avoid;
+        }
+        body {
+          background: white;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">WOLVO / TURNAROUND</div>
+        <div class="brand-sub">
+          Internal operating plan · v1.0 · 19 Oct 2026
+        </div>
+        <div class="nav-label">Plan</div>
+        <nav class="nav" id="sideNav">
+          <a href="#overview" class="active">Overview</a>
+          <a href="#financials">Financial baseline</a>
+          <a href="#calculator">Break-even calculator</a>
+          <a href="#pricing">Early Access pricing</a>
+          <a href="#execution">90-day execution</a>
+          <a href="#sales">Client acquisition</a>
+          <a href="#operations">Payment & operations</a>
+          <a href="#legal">Tunisia: verification</a>
+          <a href="#governance">Shareholder issue</a>
+          <a href="#scorecard">Weekly scorecard</a>
+          <a href="#sources">Sources & assumptions</a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="hero" id="overview">
+          <div class="eyebrow">Business recovery plan</div>
+          <h1>Make Wolvo self-sustaining.</h1>
+          <p>
+            Protect the active client, restore only the infrastructure the
+            business can afford, invoice merchants directly for Wolvo's service,
+            and acquire a small number of suitable merchants before investing in
+            growth.
+          </p>
+          <div class="pills">
+            <span class="pill">Priority: cash flow</span
+            ><span class="pill">Early Access: 1.000 DT / delivered order</span
+            ><span class="pill">Planning estimate: 80 DT / client / month</span
+            ><span class="pill">90-day horizon</span>
+          </div>
+          <div class="callout warning">
+            <strong>Decision rule:</strong> Do not spend personal money on
+            restoring service until the provider confirms the amount, recovery
+            terms, data status, and ongoing costs—and the company has a credible
+            plan to retain the active client and collect revenue.
+          </div>
+          <div class="action-row">
+            <button class="btn primary" onclick="window.print()">
+              Print / Save as PDF</button
+            ><button class="btn" id="exportCsv">
+              Export calculator assumptions (CSV)</button
+            ><button class="btn" id="resetCalc">Reset calculator</button>
+          </div>
+        </header>
+
+        <section class="section" id="financials">
+          <h2>1. Financial baseline</h2>
+          <p class="section-intro">
+            Known costs from the current working assumptions. Replace estimates
+            with invoices and the accountant's confirmed figures.
+          </p>
+          <div class="grid">
+            <div class="card span-3">
+              <div class="metric-label">Server</div>
+              <div class="metric">139.04 DT</div>
+              <div class="tiny">834.238 DT ÷ 6 months</div>
+            </div>
+            <div class="card span-3">
+              <div class="metric-label">Taxes / month</div>
+              <div class="metric">30 DT</div>
+              <div class="tiny">
+                User-provided estimate; verify what it includes
+              </div>
+            </div>
+            <div class="card span-3">
+              <div class="metric-label">Premises / month</div>
+              <div class="metric">100–200 DT</div>
+              <div class="tiny">600 DT every 3–6 months</div>
+            </div>
+            <div class="card span-3">
+              <div class="metric-label">Known monthly total</div>
+              <div class="metric">269–369 DT</div>
+              <div class="tiny">Excludes unlisted costs and debts</div>
+            </div>
+            <div class="card span-7">
+              <h3>Estimated monthly cost composition</h3>
+              <div class="chart-wrap">
+                <canvas
+                  id="costChart"
+                  role="img"
+                  aria-label="Bar chart showing monthly cost estimates"
+                ></canvas>
+              </div>
+              <p class="tiny">
+                Premises are shown at the 150 DT midpoint. Chart uses 139.04 DT
+                server + 30 DT tax + 150 DT premises = 319.04 DT/month.
+              </p>
+            </div>
+            <div class="card span-5">
+              <h3>Current position</h3>
+              <div class="barlist">
+                <div>
+                  <div class="barrow">
+                    <span>Revenue</span>
+                    <div class="bartrack">
+                      <div
+                        class="barfill"
+                        style="width: 36%; background: #12b76a"
+                      ></div>
+                    </div>
+                    <strong>80 DT</strong>
+                  </div>
+                </div>
+                <div>
+                  <div class="barrow">
+                    <span>Low cost</span>
+                    <div class="bartrack">
+                      <div class="barfill" style="width: 84%"></div>
+                    </div>
+                    <strong>269 DT</strong>
+                  </div>
+                </div>
+                <div>
+                  <div class="barrow">
+                    <span>High cost</span>
+                    <div class="bartrack">
+                      <div
+                        class="barfill"
+                        style="width: 100%; background: #d97706"
+                      ></div>
+                    </div>
+                    <strong>369 DT</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="callout">
+                <strong>Current monthly gap:</strong> approximately 119–289 DT,
+                before any unknown costs or old debts.
+              </div>
+            </div>
+          </div>
+          <div class="subsection">
+            <h3>Cost formulas</h3>
+            <span class="formula"
+              >Monthly server cost = 834.238 ÷ 6 = 139.04 DT</span
+            ><br />
+            <span class="formula"
+              >Monthly premises estimate = 600 ÷ 6 to 600 ÷ 3 = 100–200 DT</span
+            ><br />
+            <span class="formula"
+              >Known monthly cost = server + monthly taxes + premises =
+              269.04–369.04 DT</span
+            >
+          </div>
+          <div class="callout warning">
+            The monthly 30 DT figure may not represent all taxes, filings,
+            accounting fees, or liabilities. Complete a debt and renewal
+            inventory before treating this as the full cost base.
+          </div>
+        </section>
+
+        <section class="section" id="calculator">
+          <h2>2. Interactive break-even calculator</h2>
+          <p class="section-intro">
+            Change the assumptions to test how many active clients Wolvo needs.
+            Results update immediately in the page; the calculator is a planning
+            model, not an accounting statement.
+          </p>
+          <div class="card">
+            <div class="controls">
+              <div class="control">
+                <label for="fee"
+                  >Fee per delivered order
+                  <output id="feeOut">1.000 DT</output></label
+                ><input id="fee" type="number" min="0" step="0.001" value="1" />
+              </div>
+              <div class="control">
+                <label for="orders"
+                  >Average delivered orders per client / month
+                  <output id="ordersOut">80 orders</output></label
+                ><input
+                  id="orders"
+                  type="range"
+                  min="10"
+                  max="300"
+                  step="5"
+                  value="80"
+                />
+              </div>
+              <div class="control">
+                <label for="cost"
+                  >Monthly operating cost
+                  <output id="costOut">320 DT</output></label
+                ><input
+                  id="cost"
+                  type="range"
+                  min="200"
+                  max="1000"
+                  step="10"
+                  value="320"
+                />
+              </div>
+              <div class="control">
+                <label for="clients"
+                  >Current paying clients
+                  <output id="clientsOut">1 client</output></label
+                ><input
+                  id="clients"
+                  type="range"
+                  min="0"
+                  max="30"
+                  step="1"
+                  value="1"
+                />
+              </div>
+              <div class="control">
+                <label for="target"
+                  >Target monthly revenue
+                  <output id="targetOut">500 DT</output></label
+                ><input
+                  id="target"
+                  type="range"
+                  min="300"
+                  max="2000"
+                  step="25"
+                  value="500"
+                />
+              </div>
+              <div class="control">
+                <label for="manualRevenue"
+                  >Override revenue / client (optional)
+                  <output id="manualOut">Auto: 80 DT</output></label
+                ><input
+                  id="manualRevenue"
+                  type="number"
+                  min="0"
+                  step="5"
+                  placeholder="Leave blank to calculate from fee × orders"
+                />
+              </div>
+            </div>
+            <div class="results">
+              <div class="result">
+                <div class="metric-label">Revenue / client</div>
+                <div class="metric" id="revPerClient">80 DT</div>
+              </div>
+              <div class="result">
+                <div class="metric-label">Break-even clients</div>
+                <div class="metric" id="breakeven">4</div>
+              </div>
+              <div class="result">
+                <div class="metric-label">Clients for target</div>
+                <div class="metric" id="targetClients">7</div>
+              </div>
+              <div class="result">
+                <div class="metric-label">Monthly result now</div>
+                <div class="metric" id="monthlyResult">−240 DT</div>
+              </div>
+            </div>
+            <div class="subsection">
+              <h3>Client-count scenario chart</h3>
+              <div class="chart-wrap">
+                <canvas
+                  id="scenarioChart"
+                  role="img"
+                  aria-label="Chart of monthly revenue and cost by client count"
+                ></canvas>
+              </div>
+            </div>
+            <div class="subsection">
+              <h3>Formulae</h3>
+              <span class="formula"
+                >Revenue per client = delivered orders per month × fee per
+                delivered order</span
+              ><br />
+              <span class="formula"
+                >Break-even clients = ceiling(monthly operating costs ÷ revenue
+                per client)</span
+              ><br />
+              <span class="formula"
+                >Clients for revenue target = ceiling(target monthly revenue ÷
+                revenue per client)</span
+              ><br />
+              <span class="formula"
+                >Monthly result = (current clients × revenue per client) −
+                monthly operating costs</span
+              >
+            </div>
+            <div class="callout good">
+              <strong>Default example:</strong> 80 delivered orders × 1.000 DT =
+              80 DT/client/month. At 320 DT monthly costs, break-even is 4
+              clients. At a 500 DT revenue target, 7 clients are required (560
+              DT total).
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="pricing">
+          <h2>3. Early Access pricing</h2>
+          <p class="section-intro">
+            Proposed starting offer: 1.000 DT for each delivered order. Keep the
+            scope and billing rules clear, especially around returns, exchanges,
+            cancellations, and disputes.
+          </p>
+          <div class="grid">
+            <div class="card span-6">
+              <h3>Commercial rule to document</h3>
+              <ul>
+                <li>
+                  Fee applies to each order meeting the agreed definition of
+                  “delivered”.
+                </li>
+                <li>
+                  Define treatment of exchanges, duplicate orders, cancelled
+                  orders, and delivery reversals.
+                </li>
+                <li>
+                  Specify monthly cut-off date, invoice date, payment due date,
+                  and dispute window.
+                </li>
+                <li>
+                  Keep a line-level report so each invoice can be reconciled to
+                  order IDs and statuses.
+                </li>
+              </ul>
+            </div>
+            <div class="card span-6">
+              <h3>Validate before launch</h3>
+              <ul>
+                <li>
+                  Confirm whether 1.000 DT is the final fee and how VAT, if
+                  applicable, is displayed.
+                </li>
+                <li>
+                  Test the fee against typical merchant order volumes and
+                  competitors.
+                </li>
+                <li>
+                  Make sure the price covers support, hosting, payment
+                  collection, and tax obligations.
+                </li>
+                <li>
+                  Use a written Early Access agreement with a review date and
+                  clear termination terms.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout warning">
+            At the current assumptions, 80 DT/client/month implies about 80
+            delivered orders per client each month. This is a hypothesis to
+            verify with real client order data.
+          </div>
+        </section>
+
+        <section class="section" id="execution">
+          <h2>4. 90-day execution plan</h2>
+          <p class="section-intro">
+            Work in order. The server being online is not success unless the
+            company can keep it online and collect enough revenue.
+          </p>
+          <div class="card">
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status urgent">Days 1–2</span
+                ><strong>Build the full cash, debt, and renewal list</strong>
+                <p>
+                  List all invoices, taxes, accounting fees, premises
+                  obligations, domains, backups, and upcoming deadlines. Confirm
+                  the server invoice and restoration conditions.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status urgent">Days 1–3</span
+                ><strong>Speak with the server provider</strong>
+                <p>
+                  Ask for an extension, installment option, smaller VPS, and
+                  confirmation that database/backups remain intact. Do not
+                  upgrade or pay for unused capacity.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status urgent">Days 1–5</span
+                ><strong>Retain and brief Mariem</strong>
+                <p>
+                  Explain the service status honestly, confirm what she needs,
+                  and discuss the new direct billing model before changing the
+                  commercial agreement.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status next">Days 3–7</span
+                ><strong>Contact Intigo's commercial team</strong>
+                <p>
+                  Request one accountable contact, a merchant onboarding
+                  process, and permission to introduce merchants. Ask what
+                  information is needed to create client accounts reliably.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status next">Days 3–10</span
+                ><strong
+                  >Validate invoicing and taxes with an accountant</strong
+                >
+                <p>
+                  Confirm invoice format, VAT treatment, electronic invoicing
+                  applicability, historical reconciliation, and outstanding
+                  declarations.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status next">Days 7–14</span
+                ><strong>Contact former clients and run focused demos</strong>
+                <p>
+                  Ask why former clients stopped, offer a short reactivation
+                  demo, and prioritize merchants with meaningful monthly
+                  delivery volume.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status">Days 15–30</span
+                ><strong>Start a low-cost acquisition routine</strong>
+                <p>
+                  Use referrals and direct outreach. Aim for qualified
+                  conversations and demonstrations; do not spend on ads before
+                  the pitch converts.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status">Days 30–60</span
+                ><strong
+                  >Reach 3–4 active clients if the pipeline supports it</strong
+                >
+                <p>
+                  Review conversion rates, fee acceptance, support workload, and
+                  actual collections. Adjust offer and onboarding based on
+                  evidence.
+                </p>
+              </div>
+            </div>
+            <div class="task">
+              <input type="checkbox" />
+              <div>
+                <span class="status">Days 60–90</span
+                ><strong
+                  >Target 4–6+ clients and 500–600 DT collected monthly</strong
+                >
+                <p>
+                  Reduce costs further if the business is still negative. Start
+                  structured investor discussions once financial records and a
+                  credible use of funds are prepared.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sales">
+          <h2>5. Client acquisition with limited time</h2>
+          <p class="section-intro">
+            Do not build a sales operation that requires more time than you
+            have. Focus on the easiest-to-reach prospects and one repeatable
+            message.
+          </p>
+          <div class="grid">
+            <div class="card span-4">
+              <div class="metric-label">Priority 1</div>
+              <h3>Former clients</h3>
+              <p>
+                They already know the platform. Learn why they stopped before
+                offering reactivation.
+              </p>
+            </div>
+            <div class="card span-4">
+              <div class="metric-label">Priority 2</div>
+              <h3>Intigo referrals</h3>
+              <p>
+                Ask the commercial contact to introduce merchants with recurring
+                order volume and delivery pain points.
+              </p>
+            </div>
+            <div class="card span-4">
+              <div class="metric-label">Priority 3</div>
+              <h3>Merchant referrals</h3>
+              <p>
+                Ask active clients and business contacts for introductions.
+                Avoid paid advertising until conversion is proven.
+              </p>
+            </div>
+            <div class="card span-12">
+              <h3>Three-hour weekly routine</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Activity</th>
+                    <th>Time</th>
+                    <th>Output</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Prospecting and follow-ups</td>
+                    <td>2 × 45 min</td>
+                    <td>New qualified conversations</td>
+                  </tr>
+                  <tr>
+                    <td>Demo / onboarding</td>
+                    <td>60 min</td>
+                    <td>One scheduled session</td>
+                  </tr>
+                  <tr>
+                    <td>Cash and pipeline review</td>
+                    <td>30 min</td>
+                    <td>Updated weekly scorecard</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="callout">
+            Pitch the outcome first: centralize order tracking, identify risky
+            orders, understand delivery performance, and encourage repeat
+            purchases. Show only the features relevant to the merchant's
+            problem.
+          </div>
+        </section>
+
+        <section class="section" id="operations">
+          <h2>6. Payment and operating model</h2>
+          <p class="section-intro">
+            Proposed future flow: delivery partners pay merchants directly;
+            Wolvo invoices merchants separately for Wolvo's service.
+          </p>
+          <div class="grid">
+            <div class="card span-4">
+              <div class="metric-label">Step 1</div>
+              <h3>Delivery partner → merchant</h3>
+              <p>
+                The delivery company settles the merchant's order proceeds
+                directly under their existing agreement.
+              </p>
+            </div>
+            <div class="card span-4">
+              <div class="metric-label">Step 2</div>
+              <h3>Wolvo measures usage</h3>
+              <p>
+                Generate a monthly delivered-order report with order IDs,
+                statuses, billable quantities, unit fee, and exceptions.
+              </p>
+            </div>
+            <div class="card span-4">
+              <div class="metric-label">Step 3</div>
+              <h3>Wolvo → merchant invoice</h3>
+              <p>
+                Issue Wolvo's invoice, record payment, send reminders, and
+                reconcile the invoice against the report.
+              </p>
+            </div>
+          </div>
+          <div class="subsection">
+            <h3>Minimum billing controls</h3>
+            <ul>
+              <li>
+                Use sequential invoice numbers and retain copies of invoices and
+                supporting reports.
+              </li>
+              <li>Set a due date and documented reminders.</li>
+              <li>
+                Write down the seven-day grace period and any service-suspension
+                procedure in the client agreement.
+              </li>
+              <li>
+                Give reasonable notice and define data export/access
+                arrangements before suspension.
+              </li>
+              <li>
+                Record any founder cash advances or loans to the company with
+                accountant-approved documentation.
+              </li>
+            </ul>
+          </div>
+          <div class="callout warning">
+            Have the Tunisian accountant confirm the tax treatment and
+            applicable electronic invoicing rules before issuing invoices under
+            the new model. Do not assume the new process automatically resolves
+            historical accounting.
+          </div>
+        </section>
+
+        <section class="section" id="legal">
+          <h2>7. Tunisia: legal and accounting checks</h2>
+          <p class="section-intro">
+            These are questions to verify with a Tunisian accountant or
+            lawyer—not definitive legal advice.
+          </p>
+          <div class="subsection">
+            <h3>Invoicing and tax</h3>
+            <ul>
+              <li>
+                Which tax regime applies, and what filings or payments are
+                overdue?
+              </li>
+              <li>
+                Does Wolvo need to issue electronic invoices for its
+                software/services under the rules currently in force? Which
+                enrollment and technical procedure applies?
+              </li>
+              <li>
+                What VAT treatment and invoice disclosures apply to the 1 DT per
+                delivered-order fee?
+              </li>
+              <li>
+                What evidence is required to reconcile past money collected from
+                delivery companies on behalf of merchants?
+              </li>
+              <li>
+                Does the stated 30 DT/month cover all tax-related obligations or
+                only one specific payment?
+              </li>
+            </ul>
+            <p class="tiny">
+              Official reference:
+              <a
+                href="https://www.finances.gov.tn/fr/node/75"
+                target="_blank"
+                rel="noopener"
+                >Ministry of Finance — invoicing obligations</a
+              >
+              ·
+              <a
+                href="https://www.finances.gov.tn/fr/apercu-general-sur-la-fiscalite"
+                target="_blank"
+                rel="noopener"
+                >Ministry of Finance — tax overview</a
+              >
+            </p>
+          </div>
+          <div class="subsection">
+            <h3>Company bank account</h3>
+            <ul>
+              <li>
+                Confirm bank requirements, authorized signatories, and current
+                company documentation.
+              </li>
+              <li>
+                Separate company receipts and expenses from personal finances.
+              </li>
+              <li>
+                Ask the accountant how to document any personal funds used to
+                keep the company operating.
+              </li>
+            </ul>
+          </div>
+          <div class="subsection">
+            <h3>Records to prepare</h3>
+            <ul>
+              <li>Company statutes and registration/tax documents.</li>
+              <li>Shareholder register and minutes of prior decisions.</li>
+              <li>Client and delivery-partner agreements.</li>
+              <li>
+                Invoices, bank statements, tax declarations, and a list of
+                unpaid liabilities.
+              </li>
+            </ul>
+          </div>
+          <div class="callout warning">
+            Electronic invoicing rules and scope may have changed. Confirm the
+            current rules directly with the accountant or the Ministry rather
+            than relying on a general summary or a third-party article.
+          </div>
+        </section>
+
+        <section class="section" id="governance">
+          <h2>8. Shareholder deadlock</h2>
+          <p class="section-intro">
+            Do not assume every company action legally requires unanimous
+            signatures just because that has been the practice so far. The
+            answer depends on Wolvo's legal form, statutes, ownership
+            percentages, and the type of decision.
+          </p>
+          <div class="card">
+            <h3>Action list for a Tunisian corporate lawyer</h3>
+            <ol>
+              <li>
+                Review the company's legal form, statutes, and shareholder
+                ownership.
+              </li>
+              <li>
+                List the exact transactions or decisions being blocked and
+                identify the legal basis for each signature requirement.
+              </li>
+              <li>
+                Determine which ordinary operational actions the authorized
+                manager can take without changing the statutes.
+              </li>
+              <li>
+                Assess lawful options for negotiated share transfer, exit,
+                mediation, or deadlock resolution.
+              </li>
+              <li>
+                Confirm the voting thresholds and process required for
+                fundraising or a capital increase.
+              </li>
+            </ol>
+            <p class="tiny">
+              Reference:
+              <a
+                href="https://www.diwan.tn/fr/document/card/be57ef9b-20f7-4f81-9801-f7e38c579276"
+                target="_blank"
+                rel="noopener"
+                >Diwan — Tunisian Commercial Companies Code, French edition
+                (2024)</a
+              >. The applicable article depends on the company's form and
+              proposed action; have counsel verify the current official text.
+            </p>
+          </div>
+          <div class="callout warning">
+            Do not bypass a legally required signature or attempt an informal
+            removal. First establish exactly what the shareholder can legally
+            block and what decisions can continue lawfully.
+          </div>
+        </section>
+
+        <section class="section" id="scorecard">
+          <h2>9. Weekly scorecard</h2>
+          <p class="section-intro">
+            Update this every week. Track cash collected, not just invoices
+            issued or verbal commitments.
+          </p>
+          <div class="card">
+            <div class="controls">
+              <div class="control">
+                <label for="cashOnHand">Cash available (DT)</label
+                ><input
+                  id="cashOnHand"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+              <div class="control">
+                <label for="collected">Revenue collected this month (DT)</label
+                ><input
+                  id="collected"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="80"
+                />
+              </div>
+              <div class="control">
+                <label for="invoiced">Revenue invoiced this month (DT)</label
+                ><input
+                  id="invoiced"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="80"
+                />
+              </div>
+              <div class="control">
+                <label for="pipeline">Qualified prospects in pipeline</label
+                ><input
+                  id="pipeline"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </div>
+            </div>
+            <div class="results">
+              <div class="result">
+                <div class="metric-label">Collections rate</div>
+                <div class="metric" id="collectionRate">100%</div>
+              </div>
+              <div class="result">
+                <div class="metric-label">Monthly operating gap</div>
+                <div class="metric" id="scoreGap">−240 DT</div>
+              </div>
+              <div class="result">
+                <div class="metric-label">Runway at current costs</div>
+                <div class="metric" id="runway">0 months</div>
+              </div>
+              <div class="result">
+                <div class="metric-label">Qualified prospects</div>
+                <div class="metric" id="pipelineOut">0</div>
+              </div>
+            </div>
+            <p class="tiny">
+              Runway is a simple estimate of cash ÷ monthly operating costs. It
+              does not include overdue bills or timing of future receipts.
+            </p>
+          </div>
+        </section>
+
+        <section class="section" id="sources">
+          <h2>10. Sources, assumptions, and limitations</h2>
+          <p class="section-intro">
+            Business costs, client revenue, pricing, and operational facts below
+            come from Wolvo's internal information supplied for this plan.
+            Public sources are linked only for legal/accounting checks.
+          </p>
+          <div class="card sources">
+            <h3>Sources</h3>
+            <ol>
+              <li>
+                <a
+                  href="https://www.finances.gov.tn/fr/node/75"
+                  target="_blank"
+                  rel="noopener"
+                  >Tunisian Ministry of Finance — VAT taxpayers' invoicing
+                  obligations</a
+                >. General invoice information and records; ask the accountant
+                which provisions apply to Wolvo's tax regime and service.
+              </li>
+              <li>
+                <a
+                  href="https://www.finances.gov.tn/fr/apercu-general-sur-la-fiscalite"
+                  target="_blank"
+                  rel="noopener"
+                  >Tunisian Ministry of Finance — overview of the tax system</a
+                >. General information on tax and accounting obligations; not a
+                personalized tax determination.
+              </li>
+              <li>
+                <a
+                  href="https://www.diwan.tn/fr/document/card/be57ef9b-20f7-4f81-9801-f7e38c579276"
+                  target="_blank"
+                  rel="noopener"
+                  >Diwan — Commercial Companies Code, French edition (2024)</a
+                >. Legal reference for review with counsel. Check the current
+                official text and Wolvo's specific legal form before acting.
+              </li>
+            </ol>
+            <h3>Internal planning assumptions</h3>
+            <ul>
+              <li>Server invoice: 834.238 DT every six months.</li>
+              <li>
+                Tax expense estimate: at least 30 DT per month; full obligations
+                not yet confirmed.
+              </li>
+              <li>Premises: approximately 600 DT every three to six months.</li>
+              <li>
+                One active client; estimated current revenue 80 DT/month for
+                planning.
+              </li>
+              <li>
+                Early Access fee: 1.000 DT per delivered order, subject to final
+                agreement and tax review.
+              </li>
+              <li>
+                Default break-even calculator: 80 delivered orders/client/month
+                × 1 DT = 80 DT/client/month.
+              </li>
+            </ul>
+            <div class="callout warning">
+              The calculator assumes fixed costs and equal revenue per client.
+              It excludes unknown debts, variable costs, VAT or other tax
+              effects, unpaid invoices, and one-time restoration charges. Update
+              it as verified figures become available.
+            </div>
+          </div>
+        </section>
+        <div class="footer">
+          Wolvo Logistics · Internal turnaround working document · Prepared 19
+          October 2026 · Recheck figures and legal sources before taking
+          financial or corporate action.
+        </div>
+      </main>
+    </div>
+    <script>
+      (function () {
+        const $ = (id) => document.getElementById(id);
+        const money = (n) =>
+          new Intl.NumberFormat("en-US", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2,
+          }).format(n) + " DT";
+        const num = (id) => Math.max(0, Number($(id).value) || 0);
+        const signedMoney = (n) => (n < 0 ? "−" : "") + money(Math.abs(n));
+        function drawBars(canvas, items) {
+          if (!canvas) return;
+          const rect = canvas.getBoundingClientRect(),
+            dpr = window.devicePixelRatio || 1;
+          canvas.width = Math.max(300, rect.width) * dpr;
+          canvas.height = Math.max(180, rect.height) * dpr;
+          const ctx = canvas.getContext("2d");
+          ctx.scale(dpr, dpr);
+          const w = canvas.width / dpr,
+            h = canvas.height / dpr;
+          ctx.clearRect(0, 0, w, h);
+          const pad = { l: 40, r: 12, t: 18, b: 36 },
+            pw = w - pad.l - pad.r,
+            ph = h - pad.t - pad.b;
+          const max = Math.max(1, ...items.map((x) => x.value)) * 1.18;
+          ctx.font = "11px system-ui";
+          ctx.fillStyle = "#667085";
+          ctx.strokeStyle = "#e5e7eb";
+          ctx.lineWidth = 1;
+          for (let i = 0; i <= 4; i++) {
+            let y = pad.t + (ph * i) / 4;
+            ctx.beginPath();
+            ctx.moveTo(pad.l, y);
+            ctx.lineTo(w - pad.r, y);
+            ctx.stroke();
+            ctx.fillText(Math.round(max * (1 - i / 4)), 3, y + 4);
+          }
+          const step = pw / items.length,
+            bw = Math.min(54, step * 0.56);
+          items.forEach((it, i) => {
+            let x = pad.l + i * step + (step - bw) / 2,
+              bh = (it.value / max) * ph,
+              y = pad.t + ph - bh;
+            ctx.fillStyle = it.color || "#3157d5";
+            ctx.beginPath();
+            ctx.roundRect(x, y, bw, bh, 4);
+            ctx.fill();
+            ctx.fillStyle = "#344054";
+            ctx.textAlign = "center";
+            ctx.fillText(it.label, x + bw / 2, h - 12);
+          });
+          ctx.textAlign = "left";
+        }
+        function updateCalc() {
+          const fee = num("fee"),
+            orders = num("orders"),
+            cost = num("cost"),
+            clients = num("clients"),
+            target = num("target");
+          const manual = $("manualRevenue").value.trim();
+          const rev =
+            manual !== "" ? Math.max(0, Number(manual) || 0) : fee * orders;
+          $("feeOut").textContent = fee.toFixed(3) + " DT";
+          $("ordersOut").textContent = orders + " orders";
+          $("costOut").textContent = money(cost);
+          $("clientsOut").textContent =
+            clients + " client" + (clients === 1 ? "" : "s");
+          $("targetOut").textContent = money(target);
+          $("manualOut").textContent =
+            manual === ""
+              ? "Auto: " + money(fee * orders)
+              : "Override: " + money(rev);
+          $("revPerClient").textContent = money(rev);
+          $("breakeven").textContent = rev > 0 ? Math.ceil(cost / rev) : "—";
+          $("targetClients").textContent =
+            rev > 0 ? Math.ceil(target / rev) : "—";
+          const result = clients * rev - cost;
+          $("monthlyResult").textContent = signedMoney(result);
+          $("monthlyResult").style.color = result >= 0 ? "#087443" : "#b42318";
+          const n = Math.max(1, Math.ceil(target / Math.max(rev, 1)));
+          let counts = [
+            0,
+            Math.max(1, Math.ceil(cost / Math.max(rev, 1)) - 1),
+            Math.ceil(cost / Math.max(rev, 1)),
+            Math.ceil(target / Math.max(rev, 1)),
+            Math.max(n + 2, 6),
+          ];
+          counts = [...new Set(counts)].sort((a, b) => a - b);
+          drawBars(
+            $("scenarioChart"),
+            counts.map((c) => ({
+              label: c + " clients",
+              value: c * rev,
+              color: c * rev >= cost ? "#12b76a" : "#3157d5",
+            })),
+          );
+          updateScore();
+        }
+        function updateScore() {
+          const cash = num("cashOnHand"),
+            col = num("collected"),
+            inv = num("invoiced"),
+            pipeline = num("pipeline"),
+            cost = num("cost");
+          $("collectionRate").textContent =
+            inv > 0 ? Math.round((col / inv) * 100) + "%" : "—";
+          const gap = col - cost;
+          $("scoreGap").textContent = signedMoney(gap);
+          $("scoreGap").style.color = gap >= 0 ? "#087443" : "#b42318";
+          $("runway").textContent =
+            cost > 0 ? (cash / cost).toFixed(1) + " months" : "—";
+          $("pipelineOut").textContent = pipeline;
+        }
+        ["fee", "orders", "cost", "clients", "target", "manualRevenue"].forEach(
+          (id) => $(id).addEventListener("input", updateCalc),
+        );
+        ["cashOnHand", "collected", "invoiced", "pipeline"].forEach((id) =>
+          $(id).addEventListener("input", updateScore),
+        );
+        $("resetCalc").addEventListener("click", () => {
+          $("fee").value = 1;
+          $("orders").value = 80;
+          $("cost").value = 320;
+          $("clients").value = 1;
+          $("target").value = 500;
+          $("manualRevenue").value = "";
+          updateCalc();
+        });
+        $("exportCsv").addEventListener("click", () => {
+          const rows = [
+            ["Wolvo turnaround calculator assumptions", "Value"],
+            ["Fee per delivered order (DT)", num("fee")],
+            ["Delivered orders per client / month", num("orders")],
+            ["Monthly operating costs (DT)", num("cost")],
+            ["Current paying clients", num("clients")],
+            ["Target monthly revenue (DT)", num("target")],
+            [
+              "Revenue override (DT; blank means auto)",
+              $("manualRevenue").value,
+            ],
+            ["Revenue per client (DT)", $("revPerClient").textContent],
+            ["Break-even clients", $("breakeven").textContent],
+            ["Clients for target", $("targetClients").textContent],
+          ];
+          const csv = rows
+            .map((r) =>
+              r.map((v) => '"' + String(v).replace(/"/g, '""') + '"').join(","),
+            )
+            .join("\r\n");
+          const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "wolvo-turnaround-assumptions.csv";
+          a.click();
+          URL.revokeObjectURL(a.href);
+        });
+        drawBars($("costChart"), [
+          { label: "Server", value: 139.04, color: "#3157d5" },
+          { label: "Tax", value: 30, color: "#98a2b3" },
+          { label: "Premises", value: 150, color: "#d97706" },
+        ]);
+        updateCalc();
+        const links = [...document.querySelectorAll("#sideNav a")];
+        const sections = links
+          .map((a) => document.querySelector(a.getAttribute("href")))
+          .filter(Boolean);
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver(
+            (entries) =>
+              entries.forEach((e) => {
+                if (e.isIntersecting) {
+                  links.forEach((a) =>
+                    a.classList.toggle(
+                      "active",
+                      a.getAttribute("href") === "#" + e.target.id,
+                    ),
+                  );
+                }
+              }),
+            { rootMargin: "-15% 0px -70% 0px" },
+          );
+          sections.forEach((s) => io.observe(s));
+        }
+        window.addEventListener("resize", () => {
+          drawBars($("costChart"), [
+            { label: "Server", value: 139.04, color: "#3157d5" },
+            { label: "Tax", value: 30, color: "#98a2b3" },
+            { label: "Premises", value: 150, color: "#d97706" },
+          ]);
+          updateCalc();
+        });
+      })();
+    </script>
+  </body>
+</html>
