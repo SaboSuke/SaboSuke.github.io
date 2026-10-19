@@ -9,13 +9,26 @@
   const num = (id) => Math.max(0, Number($(id).value) || 0);
   const signedMoney = (n) => (n < 0 ? "−" : "") + money(Math.abs(n));
 
+  // =====================
+  // Defaults (see defaults.js)
+  // =====================
+  function applyDefaults(section) {
+    Object.entries(DEFAULTS[section]).forEach(([id, value]) => {
+      const el = $(id);
+      if (el) el.value = value;
+    });
+  }
+
+  function applyAllDefaults() {
+    ["calculator", "cashBridge", "scorecard", "config"].forEach(applyDefaults);
+  }
+
   // Storage keys
   const STORAGE_KEY = 'wolvo_plan_data';
   const CONFIG_KEY = 'wolvo_config_data';
   const TASKS_KEY = 'wolvo_tasks';
   const TASK_STARTER_MIGRATION_KEY = 'wolvo_urgent_tasks_seed_v3';
   const PAGE_KEY = 'wolvo_plan_active_page';
-  const BRIDGE_PREFILL_KEY = 'wolvo_plan_bridge_prefill_v1';
 
   // =====================
   // Configuration Functions
@@ -58,14 +71,7 @@
   }
 
   function resetConfig() {
-    $("configServer").value = 834.238;
-    $("configEmail").value = 94.8;
-    $("configDomain").value = 54;
-    $("configTax").value = 30;
-    $("configPremises").value = 600;
-    $("configVatRate").value = 19;
-    $("configReturnedFee").value = 0.500;
-    $("configExchangeFee").value = 0.500;
+    applyDefaults("config");
     saveConfig();
   }
 
@@ -205,19 +211,6 @@
       } catch (e) {
         console.error('Error loading from storage:', e);
       }
-    }
-    if (!localStorage.getItem(BRIDGE_PREFILL_KEY)) {
-      const bridgeIds = ["bridgeCash", "bridgeRestore", "bridgeArrears", "bridgeBills", "bridgeReceipts", "bridgeDate"];
-      if (bridgeIds.every(id => $(id).value === "")) {
-        $("bridgeCash").value = "0";
-        $("bridgeRestore").value = "834.238";
-        $("bridgeArrears").value = "0";
-        $("bridgeBills").value = "630";
-        $("bridgeReceipts").value = "0";
-        $("bridgeDate").value = "2026-10-31";
-        saveToStorage();
-      }
-      localStorage.setItem(BRIDGE_PREFILL_KEY, "1");
     }
   }
 
@@ -1792,7 +1785,8 @@
   // Initialization
   // =====================
   function init() {
-    // Load saved data
+    // Seed default values from defaults.js, then overlay saved data
+    applyAllDefaults();
     loadFromStorage();
     loadConfig();
     loadTasks();
@@ -1813,35 +1807,25 @@
     document.querySelectorAll("#execution-plan .task input[type=checkbox]").forEach((input) => input.addEventListener("change", saveToStorage));
 
     $("resetCalc").addEventListener("click", () => {
-      $("fee").value = 1;
-      $("orders").value = 80;
-      $("cost").value = 332;
-      $("clients").value = 1;
-      $("target").value = 500;
-      $("manualRevenue").value = "";
+      applyDefaults("calculator");
       updateCalc();
+      saveToStorage();
     });
 
     $("resetBridge").addEventListener("click", () => {
-      $("bridgeCash").value = "0";
-      $("bridgeRestore").value = "834.238";
-      $("bridgeArrears").value = "0";
-      $("bridgeBills").value = "630";
-      $("bridgeReceipts").value = "0";
-      $("bridgeDate").value = "2026-10-31";
+      applyDefaults("cashBridge");
       updateCashBridge();
       saveToStorage();
     });
 
     $("resetScorecard").addEventListener("click", () => {
-      ["cashOnHand", "collected", "invoiced", "pipeline", "outreachCount", "demosCount", "overdueBills", "scorecardDate"].forEach((id) => { $(id).value = ""; });
-      $("activeClients").value = "1";
+      applyDefaults("scorecard");
       updateScore();
       saveToStorage();
     });
 
     $("resetExecution").addEventListener("click", () => {
-      document.querySelectorAll("#execution-plan .task input[type=checkbox]").forEach((input) => { input.checked = false; });
+      document.querySelectorAll("#execution-plan .task input[type=checkbox]").forEach((input) => { input.checked = DEFAULTS.execution.checked; });
       saveToStorage();
     });
 
