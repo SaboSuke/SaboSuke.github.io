@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "exportedAt": "2026-10-19T00:00:00.000Z",
+  "calculator": {
+    "fee": "1",
+    "orders": "80",
+    "cost": "320",
+    "clients": "1",
+    "target": "500",
+    "manualRevenue": ""
+  },
+  "scorecard": {
+    "cashOnHand": "0",
+    "collected": "80",
+    "invoiced": "80",
+    "pipeline": "0"
+  },
+  "config": {
+    "server": "834.238",
+    "tax": "30",
+    "premises": "600",
+    "vatRate": "19",
+    "returnedFee": "0.500",
+    "exchangeFee": "0.500"
+  },
+  "tasks": []
+}

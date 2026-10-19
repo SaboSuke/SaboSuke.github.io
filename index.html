@@ -564,8 +564,13 @@
               Print / Save as PDF</button
             ><button class="btn" id="exportCsv">
               Export calculator assumptions (CSV)</button
+            ><button class="btn" id="exportJson">
+              Export all data (JSON)</button
+            ><button class="btn" id="importJson">
+              Import data (JSON)</button
             ><button class="btn" id="resetCalc">Reset calculator</button>
           </div>
+          <input type="file" id="jsonFileInput" accept=".json" style="display: none;" />
         </header>
 
         <section class="section" id="financials">
@@ -1857,6 +1862,111 @@
           a.click();
           URL.revokeObjectURL(a.href);
         });
+
+        // Export all data to JSON
+        $("exportJson").addEventListener("click", () => {
+          const allData = {
+            version: "1.0",
+            exportedAt: new Date().toISOString(),
+            calculator: {
+              fee: $("fee").value,
+              orders: $("orders").value,
+              cost: $("cost").value,
+              clients: $("clients").value,
+              target: $("target").value,
+              manualRevenue: $("manualRevenue").value
+            },
+            scorecard: {
+              cashOnHand: $("cashOnHand").value,
+              collected: $("collected").value,
+              invoiced: $("invoiced").value,
+              pipeline: $("pipeline").value
+            },
+            config: {
+              server: $("configServer").value,
+              tax: $("configTax").value,
+              premises: $("configPremises").value,
+              vatRate: $("configVatRate").value,
+              returnedFee: $("configReturnedFee").value,
+              exchangeFee: $("configExchangeFee").value
+            },
+            tasks: tasks
+          };
+
+          const json = JSON.stringify(allData, null, 2);
+          const blob = new Blob([json], { type: "application/json;charset=utf-8;" });
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "wolvo-plan-data.json";
+          a.click();
+          URL.revokeObjectURL(a.href);
+        });
+
+        // Import data from JSON
+        $("importJson").addEventListener("click", () => {
+          $("jsonFileInput").click();
+        });
+
+        $("jsonFileInput").addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            try {
+              const data = JSON.parse(event.target.result);
+
+              // Load calculator data
+              if (data.calculator) {
+                if (data.calculator.fee) $("fee").value = data.calculator.fee;
+                if (data.calculator.orders) $("orders").value = data.calculator.orders;
+                if (data.calculator.cost) $("cost").value = data.calculator.cost;
+                if (data.calculator.clients) $("clients").value = data.calculator.clients;
+                if (data.calculator.target) $("target").value = data.calculator.target;
+                if (data.calculator.manualRevenue !== undefined) $("manualRevenue").value = data.calculator.manualRevenue;
+              }
+
+              // Load scorecard data
+              if (data.scorecard) {
+                if (data.scorecard.cashOnHand) $("cashOnHand").value = data.scorecard.cashOnHand;
+                if (data.scorecard.collected) $("collected").value = data.scorecard.collected;
+                if (data.scorecard.invoiced) $("invoiced").value = data.scorecard.invoiced;
+                if (data.scorecard.pipeline) $("pipeline").value = data.scorecard.pipeline;
+              }
+
+              // Load config data
+              if (data.config) {
+                if (data.config.server) $("configServer").value = data.config.server;
+                if (data.config.tax) $("configTax").value = data.config.tax;
+                if (data.config.premises) $("configPremises").value = data.config.premises;
+                if (data.config.vatRate) $("configVatRate").value = data.config.vatRate;
+                if (data.config.returnedFee) $("configReturnedFee").value = data.config.returnedFee;
+                if (data.config.exchangeFee) $("configExchangeFee").value = data.config.exchangeFee;
+                saveConfig();
+              }
+
+              // Load tasks
+              if (data.tasks && Array.isArray(data.tasks)) {
+                tasks = data.tasks;
+                saveTasks();
+                renderTasks();
+              }
+
+              // Update all displays
+              updateCalc();
+              updateScore();
+              updateFinancialsFromConfig();
+              saveToStorage();
+
+              alert("Data imported successfully!");
+            } catch (error) {
+              alert("Error importing data: " + error.message);
+              console.error("Import error:", error);
+            }
+          };
+          reader.readAsText(file);
+          e.target.value = ""; // Reset file input
+        });
         loadFromStorage();
         loadConfig();
         updateFinancialsFromConfig();
@@ -2049,6 +2159,8 @@
             decisionDesc: "Do not spend personal money on restoring service until the provider confirms the amount, recovery terms, data status, and ongoing costs—and the company has a credible plan to retain the active client and collect revenue.",
             printPdf: "Print / Save as PDF",
             exportCsv: "Export calculator assumptions (CSV)",
+            exportJson: "Export all data (JSON)",
+            importJson: "Import data (JSON)",
             resetCalc: "Reset calculator",
             financialTitle: "1. Financial baseline",
             financialDesc: "Known costs from the current working assumptions. Replace estimates with invoices and the accountant's confirmed figures.",
@@ -2170,6 +2282,8 @@
             decisionDesc: "Ne pas dépenser d'argent personnel pour restaurer le service jusqu'à ce que le fournisseur confirme le montant, les conditions de récupération, le statut des données et les coûts continus - et que l'entreprise ait un plan crédible pour conserver le client actuel et collecter les revenus.",
             printPdf: "Imprimer / Sauvegarder en PDF",
             exportCsv: "Exporter les hypothèses du calculateur (CSV)",
+            exportJson: "Exporter toutes les données (JSON)",
+            importJson: "Importer les données (JSON)",
             resetCalc: "Réinitialiser le calculateur",
             financialTitle: "1. Base financière",
             financialDesc: "Coûts connus des hypothèses de travail actuelles. Remplacez les estimations par les factures et les chiffres confirmés par le comptable.",
@@ -2305,7 +2419,9 @@
           const buttons = document.querySelectorAll('.action-row .btn');
           if (buttons[0]) buttons[0].textContent = t.printPdf;
           if (buttons[1]) buttons[1].textContent = t.exportCsv;
-          if (buttons[2]) buttons[2].textContent = t.resetCalc;
+          if (buttons[2]) buttons[2].textContent = t.exportJson;
+          if (buttons[3]) buttons[3].textContent = t.importJson;
+          if (buttons[4]) buttons[4].textContent = t.resetCalc;
 
           // Update section headers
           const sections = [
