@@ -57,6 +57,9 @@ const translations = {
     exportJson: "Export all data (JSON)",
     importJson: "Import data (JSON)",
     resetCalc: "Reset calculator",
+    resetBridge: "Reset cash bridge",
+    resetScorecard: "Reset scorecard",
+    resetExecution: "Reset checklist",
 
     // Process Flow
     processFlowTitle: "Client Lifecycle Process Flow",
@@ -486,6 +489,9 @@ const translations = {
     exportJson: "Exporter toutes les données (JSON)",
     importJson: "Importer les données (JSON)",
     resetCalc: "Réinitialiser le calculateur",
+    resetBridge: "Réinitialiser le pont de trésorerie",
+    resetScorecard: "Réinitialiser le suivi hebdomadaire",
+    resetExecution: "Réinitialiser la liste de contrôle",
 
     // Process Flow
     processFlowTitle: "Flux de processus du cycle de vie client",

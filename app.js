@@ -1212,6 +1212,9 @@
     if (buttons[2]) buttons[2].textContent = t.exportJson;
     if (buttons[3]) buttons[3].textContent = t.importJson;
     if ($("resetCalc")) $("resetCalc").textContent = t.resetCalc;
+    if ($("resetBridge")) $("resetBridge").textContent = t.resetBridge;
+    if ($("resetScorecard")) $("resetScorecard").textContent = t.resetScorecard;
+    if ($("resetExecution")) $("resetExecution").textContent = t.resetExecution;
 
     // Update process flow
     const processTitle = document.getElementById('processFlowTitle');
@@ -1817,6 +1820,29 @@
       $("target").value = 500;
       $("manualRevenue").value = "";
       updateCalc();
+    });
+
+    $("resetBridge").addEventListener("click", () => {
+      $("bridgeCash").value = "0";
+      $("bridgeRestore").value = "834.238";
+      $("bridgeArrears").value = "0";
+      $("bridgeBills").value = "630";
+      $("bridgeReceipts").value = "0";
+      $("bridgeDate").value = "2026-10-31";
+      updateCashBridge();
+      saveToStorage();
+    });
+
+    $("resetScorecard").addEventListener("click", () => {
+      ["cashOnHand", "collected", "invoiced", "pipeline", "outreachCount", "demosCount", "overdueBills", "scorecardDate"].forEach((id) => { $(id).value = ""; });
+      $("activeClients").value = "1";
+      updateScore();
+      saveToStorage();
+    });
+
+    $("resetExecution").addEventListener("click", () => {
+      document.querySelectorAll("#execution-plan .task input[type=checkbox]").forEach((input) => { input.checked = false; });
+      saveToStorage();
     });
 
     $("exportCsv").addEventListener("click", exportCsv);
