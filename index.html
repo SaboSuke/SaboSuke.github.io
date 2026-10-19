@@ -516,18 +516,24 @@
         <div class="brand-sub">
           Internal operating plan · v1.0 · 19 Oct 2026
         </div>
+        <div style="margin: 16px 10px;">
+          <button class="btn" id="langToggle" style="width: 100%; font-size: 12px;">🇫🇷 Français</button>
+        </div>
         <div class="nav-label">Plan</div>
         <nav class="nav" id="sideNav">
           <a href="#overview" class="active">Overview</a>
           <a href="#financials">Financial baseline</a>
           <a href="#calculator">Break-even calculator</a>
+          <a href="#config">Configuration</a>
           <a href="#pricing">Early Access pricing</a>
-          <a href="#execution">90-day execution</a>
+          <a href="#execution">Team structure</a>
+          <a href="#execution-plan">90-day execution</a>
           <a href="#sales">Client acquisition</a>
           <a href="#operations">Payment & operations</a>
           <a href="#legal">Tunisia: verification</a>
           <a href="#governance">Shareholder issue</a>
           <a href="#scorecard">Weekly scorecard</a>
+          <a href="#tasks">Task management</a>
           <a href="#sources">Sources & assumptions</a>
         </nav>
       </aside>
@@ -804,8 +810,87 @@
           </div>
         </section>
 
+        <section class="section" id="config">
+          <h2>3. Configuration</h2>
+          <p class="section-intro">
+            Configure tax rates, fees, and other assumptions. These values will be used in calculations throughout the document.
+          </p>
+          <div class="card">
+            <div class="controls">
+              <div class="control">
+                <label for="configServer">Server cost (DT/6 months)</label
+                ><input
+                  id="configServer"
+                  type="number"
+                  min="0"
+                  step="0.001"
+                  value="834.238"
+                />
+              </div>
+              <div class="control">
+                <label for="configTax">Monthly tax estimate (DT)</label
+                ><input
+                  id="configTax"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="30"
+                />
+              </div>
+              <div class="control">
+                <label for="configPremises">Premises cost (DT/3-6 months)</label
+                ><input
+                  id="configPremises"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="600"
+                />
+              </div>
+              <div class="control">
+                <label for="configVatRate">VAT rate (%)</label
+                ><input
+                  id="configVatRate"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="19"
+                />
+              </div>
+              <div class="control">
+                <label for="configReturnedFee">Fee per returned order (DT)</label
+                ><input
+                  id="configReturnedFee"
+                  type="number"
+                  min="0"
+                  step="0.001"
+                  value="0.500"
+                />
+              </div>
+              <div class="control">
+                <label for="configExchangeFee">Fee per exchange order (DT)</label
+                ><input
+                  id="configExchangeFee"
+                  type="number"
+                  min="0"
+                  step="0.001"
+                  value="0.500"
+                />
+              </div>
+            </div>
+            <div class="action-row">
+              <button class="btn primary" id="saveConfig">Save configuration</button>
+              <button class="btn" id="resetConfig">Reset to defaults</button>
+            </div>
+            <div class="callout good" id="configSaved" style="display: none;">
+              <strong>Configuration saved!</strong> Your settings have been stored and will be used in calculations.
+            </div>
+          </div>
+        </section>
+
         <section class="section" id="pricing">
-          <h2>3. Early Access pricing</h2>
+          <h2>4. Early Access pricing</h2>
           <p class="section-intro">
             Proposed starting offer: 1.000 DT for each delivered order. Keep the
             scope and billing rules clear, especially around returns, exchanges,
@@ -863,7 +948,46 @@
         </section>
 
         <section class="section" id="execution">
-          <h2>4. 90-day execution plan</h2>
+          <h2>5. Team structure</h2>
+          <p class="section-intro">
+            Current team roles and responsibilities for efficient task delegation.
+          </p>
+          <div class="grid">
+            <div class="card span-4">
+              <div class="metric-label">CEO</div>
+              <h3>Issam Abed</h3>
+              <p>
+                Strategic planning, decision-making, and overall business direction.
+                Focuses on high-level planning and delegation for maximum efficiency.
+                Monitors progress and makes decisions on next steps.
+              </p>
+            </div>
+            <div class="card span-4">
+              <div class="metric-label">Commercial</div>
+              <h3>Jawher Cherif (Former CEO)</h3>
+              <p>
+                Handles commercial tasks, business development, and acquiring new clients.
+                Leverages extensive experience in delivery companies to bring in business.
+              </p>
+            </div>
+            <div class="card span-4">
+              <div class="metric-label">Operations</div>
+              <h3>Nasim Ben Mohamed</h3>
+              <p>
+                Handles reclamations, minimal tasks, and banking operations.
+                Manages client support and operational issues.
+              </p>
+            </div>
+          </div>
+          <div class="callout">
+            <strong>Delegation strategy:</strong> The CEO focuses on planning and decisions,
+            Jawher focuses on commercial activities and client acquisition, while Nasim handles
+            operational tasks and support. This division allows for efficient operations with limited availability.
+          </div>
+        </section>
+
+        <section class="section" id="execution-plan">
+          <h2>6. 90-day execution plan</h2>
           <p class="section-intro">
             Work in order. The server being online is not success unless the
             company can keep it online and collect enough revenue.
@@ -935,11 +1059,10 @@
               <input type="checkbox" />
               <div>
                 <span class="status next">Days 7–14</span
-                ><strong>Contact former clients and run focused demos</strong>
+                ><strong>Deepen relationship with active client</strong>
                 <p>
-                  Ask why former clients stopped, offer a short reactivation
-                  demo, and prioritize merchants with meaningful monthly
-                  delivery volume.
+                  Focus on understanding client needs, offering additional features,
+                  and finding ways to increase their order volume and satisfaction.
                 </p>
               </div>
             </div>
@@ -987,7 +1110,7 @@
         </section>
 
         <section class="section" id="sales">
-          <h2>5. Client acquisition with limited time</h2>
+          <h2>6. Client acquisition with limited time</h2>
           <p class="section-intro">
             Do not build a sales operation that requires more time than you
             have. Focus on the easiest-to-reach prospects and one repeatable
@@ -996,10 +1119,9 @@
           <div class="grid">
             <div class="card span-4">
               <div class="metric-label">Priority 1</div>
-              <h3>Former clients</h3>
+              <h3>Active client retention</h3>
               <p>
-                They already know the platform. Learn why they stopped before
-                offering reactivation.
+                Focus on keeping the current client satisfied and understand their needs to increase order volume.
               </p>
             </div>
             <div class="card span-4">
@@ -1057,7 +1179,7 @@
         </section>
 
         <section class="section" id="operations">
-          <h2>6. Payment and operating model</h2>
+          <h2>7. Payment and operating model</h2>
           <p class="section-intro">
             Proposed future flow: delivery partners pay merchants directly;
             Wolvo invoices merchants separately for Wolvo's service.
@@ -1119,7 +1241,7 @@
         </section>
 
         <section class="section" id="legal">
-          <h2>7. Tunisia: legal and accounting checks</h2>
+          <h2>8. Tunisia: legal and accounting checks</h2>
           <p class="section-intro">
             These are questions to verify with a Tunisian accountant or
             lawyer—not definitive legal advice.
@@ -1202,7 +1324,7 @@
         </section>
 
         <section class="section" id="governance">
-          <h2>8. Shareholder deadlock</h2>
+          <h2>9. Shareholder deadlock</h2>
           <p class="section-intro">
             Do not assume every company action legally requires unanimous
             signatures just because that has been the practice so far. The
@@ -1253,7 +1375,7 @@
         </section>
 
         <section class="section" id="scorecard">
-          <h2>9. Weekly scorecard</h2>
+          <h2>10. Weekly scorecard</h2>
           <p class="section-intro">
             Update this every week. Track cash collected, not just invoices
             issued or verbal commitments.
@@ -1326,8 +1448,58 @@
           </div>
         </section>
 
+        <section class="section" id="tasks">
+          <h2>10. Task management</h2>
+          <p class="section-intro">
+            Track tasks, subtasks, and clarifications for the team. Assign tasks to team members and monitor progress.
+          </p>
+          <div class="card">
+            <div class="controls">
+              <div class="control">
+                <label for="taskTitle">New task title</label
+                ><input
+                  id="taskTitle"
+                  type="text"
+                  placeholder="Enter task title..."
+                />
+              </div>
+              <div class="control">
+                <label for="taskAssignee">Assign to</label
+                ><select id="taskAssignee">
+                  <option value="issam">Issam (CEO - Planning & Decisions)</option>
+                  <option value="jawher">Jawher (Commercial & New Clients)</option>
+                  <option value="nasim">Nasim (Reclamations & Banking)</option>
+                </select>
+              </div>
+              <div class="control">
+                <label for="taskPriority">Priority</label
+                ><select id="taskPriority">
+                  <option value="urgent">Urgent</option>
+                  <option value="next">Next</option>
+                  <option value="normal">Normal</option>
+                </select>
+              </div>
+              <div class="control">
+                <label for="taskNotes">Notes/Clarifications</label
+                ><input
+                  id="taskNotes"
+                  type="text"
+                  placeholder="Additional details..."
+                />
+              </div>
+            </div>
+            <div class="action-row">
+              <button class="btn primary" id="addTask">Add task</button>
+              <button class="btn" id="clearCompleted">Clear completed</button>
+            </div>
+            <div id="taskList" style="margin-top: 20px;">
+              <!-- Tasks will be rendered here -->
+            </div>
+          </div>
+        </section>
+
         <section class="section" id="sources">
-          <h2>10. Sources, assumptions, and limitations</h2>
+          <h2>11. Sources, assumptions, and limitations</h2>
           <p class="section-intro">
             Business costs, client revenue, pricing, and operational facts below
             come from Wolvo's internal information supplied for this plan.
@@ -1411,6 +1583,134 @@
           }).format(n) + " DT";
         const num = (id) => Math.max(0, Number($(id).value) || 0);
         const signedMoney = (n) => (n < 0 ? "−" : "") + money(Math.abs(n));
+
+        // localStorage functions
+        const STORAGE_KEY = 'wolvo_plan_data';
+        const CONFIG_KEY = 'wolvo_config_data';
+
+        // Configuration functions
+        function saveConfig() {
+          const config = {
+            server: $("configServer").value,
+            tax: $("configTax").value,
+            premises: $("configPremises").value,
+            vatRate: $("configVatRate").value,
+            returnedFee: $("configReturnedFee").value,
+            exchangeFee: $("configExchangeFee").value
+          };
+          localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+          const savedMsg = $("configSaved");
+          savedMsg.style.display = 'block';
+          setTimeout(() => { savedMsg.style.display = 'none'; }, 3000);
+          updateFinancialsFromConfig();
+        }
+
+        function loadConfig() {
+          const saved = localStorage.getItem(CONFIG_KEY);
+          if (saved) {
+            try {
+              const config = JSON.parse(saved);
+              if (config.server) $("configServer").value = config.server;
+              if (config.tax) $("configTax").value = config.tax;
+              if (config.premises) $("configPremises").value = config.premises;
+              if (config.vatRate) $("configVatRate").value = config.vatRate;
+              if (config.returnedFee) $("configReturnedFee").value = config.returnedFee;
+              if (config.exchangeFee) $("configExchangeFee").value = config.exchangeFee;
+            } catch (e) {
+              console.error('Error loading config:', e);
+            }
+          }
+        }
+
+        function resetConfig() {
+          $("configServer").value = 834.238;
+          $("configTax").value = 30;
+          $("configPremises").value = 600;
+          $("configVatRate").value = 19;
+          $("configReturnedFee").value = 0.500;
+          $("configExchangeFee").value = 0.500;
+          saveConfig();
+        }
+
+        function updateFinancialsFromConfig() {
+          const server = Number($("configServer").value) || 834.238;
+          const tax = Number($("configTax").value) || 30;
+          const premises = Number($("configPremises").value) || 600;
+
+          const monthlyServer = server / 6;
+          const monthlyPremisesLow = premises / 6;
+          const monthlyPremisesHigh = premises / 3;
+          const monthlyTotalLow = monthlyServer + tax + monthlyPremisesLow;
+          const monthlyTotalHigh = monthlyServer + tax + monthlyPremisesHigh;
+
+          // Update financial baseline section
+          const serverEl = document.querySelector('#financials .card:nth-child(1) .metric');
+          const taxEl = document.querySelector('#financials .card:nth-child(2) .metric');
+          const premisesEl = document.querySelector('#financials .card:nth-child(3) .metric');
+          const totalEl = document.querySelector('#financials .card:nth-child(4) .metric');
+
+          if (serverEl) serverEl.textContent = money(monthlyServer);
+          if (taxEl) taxEl.textContent = money(tax);
+          if (premisesEl) premisesEl.textContent = money(monthlyPremisesLow) + '–' + money(monthlyPremisesHigh);
+          if (totalEl) totalEl.textContent = money(monthlyTotalLow) + '–' + money(monthlyTotalHigh);
+
+          // Update cost chart
+          drawBars($("costChart"), [
+            { label: "Server", value: monthlyServer, color: "#3157d5" },
+            { label: "Tax", value: tax, color: "#98a2b3" },
+            { label: "Premises", value: (monthlyPremisesLow + monthlyPremisesHigh) / 2, color: "#d97706" },
+          ]);
+
+          // Update cost input in calculator to match
+          const avgCost = (monthlyTotalLow + monthlyTotalHigh) / 2;
+          $("cost").value = Math.round(avgCost);
+          updateCalc();
+        }
+
+        function saveToStorage() {
+          const data = {
+            calculator: {
+              fee: $("fee").value,
+              orders: $("orders").value,
+              cost: $("cost").value,
+              clients: $("clients").value,
+              target: $("target").value,
+              manualRevenue: $("manualRevenue").value
+            },
+            scorecard: {
+              cashOnHand: $("cashOnHand").value,
+              collected: $("collected").value,
+              invoiced: $("invoiced").value,
+              pipeline: $("pipeline").value
+            }
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function loadFromStorage() {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            try {
+              const data = JSON.parse(saved);
+              if (data.calculator) {
+                if (data.calculator.fee) $("fee").value = data.calculator.fee;
+                if (data.calculator.orders) $("orders").value = data.calculator.orders;
+                if (data.calculator.cost) $("cost").value = data.calculator.cost;
+                if (data.calculator.clients) $("clients").value = data.calculator.clients;
+                if (data.calculator.target) $("target").value = data.calculator.target;
+                if (data.calculator.manualRevenue !== undefined) $("manualRevenue").value = data.calculator.manualRevenue;
+              }
+              if (data.scorecard) {
+                if (data.scorecard.cashOnHand) $("cashOnHand").value = data.scorecard.cashOnHand;
+                if (data.scorecard.collected) $("collected").value = data.scorecard.collected;
+                if (data.scorecard.invoiced) $("invoiced").value = data.scorecard.invoiced;
+                if (data.scorecard.pipeline) $("pipeline").value = data.scorecard.pipeline;
+              }
+            } catch (e) {
+              console.error('Error loading from storage:', e);
+            }
+          }
+        }
         function drawBars(canvas, items) {
           if (!canvas) return;
           const rect = canvas.getBoundingClientRect(),
@@ -1515,10 +1815,10 @@
           $("pipelineOut").textContent = pipeline;
         }
         ["fee", "orders", "cost", "clients", "target", "manualRevenue"].forEach(
-          (id) => $(id).addEventListener("input", updateCalc),
+          (id) => $(id).addEventListener("input", () => { updateCalc(); saveToStorage(); }),
         );
         ["cashOnHand", "collected", "invoiced", "pipeline"].forEach((id) =>
-          $(id).addEventListener("input", updateScore),
+          $(id).addEventListener("input", () => { updateScore(); saveToStorage(); }),
         );
         $("resetCalc").addEventListener("click", () => {
           $("fee").value = 1;
@@ -1557,12 +1857,517 @@
           a.click();
           URL.revokeObjectURL(a.href);
         });
+        loadFromStorage();
+        loadConfig();
+        updateFinancialsFromConfig();
         drawBars($("costChart"), [
           { label: "Server", value: 139.04, color: "#3157d5" },
           { label: "Tax", value: 30, color: "#98a2b3" },
           { label: "Premises", value: 150, color: "#d97706" },
         ]);
         updateCalc();
+
+        // Config event listeners
+        $("saveConfig").addEventListener("click", saveConfig);
+        $("resetConfig").addEventListener("click", resetConfig);
+
+        // Task management
+        const TASKS_KEY = 'wolvo_tasks';
+        let tasks = [];
+
+        function loadTasks() {
+          const saved = localStorage.getItem(TASKS_KEY);
+          if (saved) {
+            try {
+              tasks = JSON.parse(saved);
+            } catch (e) {
+              console.error('Error loading tasks:', e);
+              tasks = [];
+            }
+          }
+          renderTasks();
+        }
+
+        function saveTasks() {
+          localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+        }
+
+        function addTask() {
+          const title = $("taskTitle").value.trim();
+          if (!title) return;
+
+          const task = {
+            id: Date.now(),
+            title: title,
+            assignee: $("taskAssignee").value,
+            priority: $("taskPriority").value,
+            notes: $("taskNotes").value.trim(),
+            completed: false,
+            createdAt: new Date().toISOString(),
+            subtasks: []
+          };
+
+          tasks.push(task);
+          saveTasks();
+          renderTasks();
+
+          $("taskTitle").value = "";
+          $("taskNotes").value = "";
+        }
+
+        function toggleTask(id) {
+          const task = tasks.find(t => t.id === id);
+          if (task) {
+            task.completed = !task.completed;
+            saveTasks();
+            renderTasks();
+          }
+        }
+
+        function deleteTask(id) {
+          tasks = tasks.filter(t => t.id !== id);
+          saveTasks();
+          renderTasks();
+        }
+
+        function addSubtask(taskId) {
+          const task = tasks.find(t => t.id === taskId);
+          if (task) {
+            const subtaskTitle = prompt("Enter subtask:");
+            if (subtaskTitle && subtaskTitle.trim()) {
+              task.subtasks.push({
+                id: Date.now(),
+                title: subtaskTitle.trim(),
+                completed: false
+              });
+              saveTasks();
+              renderTasks();
+            }
+          }
+        }
+
+        function toggleSubtask(taskId, subtaskId) {
+          const task = tasks.find(t => t.id === taskId);
+          if (task) {
+            const subtask = task.subtasks.find(st => st.id === subtaskId);
+            if (subtask) {
+              subtask.completed = !subtask.completed;
+              saveTasks();
+              renderTasks();
+            }
+          }
+        }
+
+        function clearCompleted() {
+          tasks = tasks.filter(t => !t.completed);
+          saveTasks();
+          renderTasks();
+        }
+
+        function renderTasks() {
+          const container = $("taskList");
+          if (tasks.length === 0) {
+            container.innerHTML = '<p class="muted">No tasks yet. Add a task above to get started.</p>';
+            return;
+          }
+
+          const assigneeNames = {
+            issam: 'Issam (CEO)',
+            jawher: 'Jawher',
+            nasim: 'Nasim'
+          };
+
+          const priorityClass = {
+            urgent: 'urgent',
+            next: 'next',
+            normal: ''
+          };
+
+          container.innerHTML = tasks.map(task => `
+            <div class="task" style="${task.completed ? 'opacity: 0.6;' : ''}">
+              <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${task.id})" />
+              <div style="flex: 1;">
+                <span class="status ${priorityClass[task.priority]}">${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}</span>
+                <strong>${task.title}</strong>
+                <p>
+                  <strong>Assigned to:</strong> ${assigneeNames[task.assignee]}<br/>
+                  ${task.notes ? '<strong>Notes:</strong> ' + task.notes + '<br/>' : ''}
+                  <strong>Created:</strong> ${new Date(task.createdAt).toLocaleDateString()}
+                </p>
+                ${task.subtasks.length > 0 ? `
+                  <div style="margin-left: 20px; margin-top: 8px;">
+                    ${task.subtasks.map(st => `
+                      <div style="display: flex; gap: 8px; align-items: center; margin: 4px 0;">
+                        <input type="checkbox" ${st.completed ? 'checked' : ''} onchange="toggleSubtask(${task.id}, ${st.id})" />
+                        <span style="${st.completed ? 'text-decoration: line-through; color: var(--muted);' : ''}">${st.title}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+                ` : ''}
+                <button class="btn" style="font-size: 11px; padding: 4px 8px; margin-top: 8px;" onclick="addSubtask(${task.id})">+ Add subtask</button>
+                <button class="btn" style="font-size: 11px; padding: 4px 8px; margin-top: 8px; background: #fff0ee; border-color: #fecaca; color: #b42318;" onclick="deleteTask(${task.id})">Delete</button>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Make task functions globally accessible
+        window.toggleTask = toggleTask;
+        window.deleteTask = deleteTask;
+        window.addSubtask = addSubtask;
+        window.toggleSubtask = toggleSubtask;
+
+        $("addTask").addEventListener("click", addTask);
+        $("clearCompleted").addEventListener("click", clearCompleted);
+
+        loadTasks();
+
+        // Language support
+        const translations = {
+          en: {
+            overview: "Overview",
+            financials: "Financial baseline",
+            calculator: "Break-even calculator",
+            config: "Configuration",
+            pricing: "Early Access pricing",
+            execution: "Team structure",
+            executionPlan: "90-day execution",
+            sales: "Client acquisition",
+            operations: "Payment & operations",
+            legal: "Tunisia: verification",
+            governance: "Shareholder issue",
+            scorecard: "Weekly scorecard",
+            tasks: "Task management",
+            sources: "Sources & assumptions",
+            heroTitle: "Make Wolvo self-sustaining.",
+            heroDesc: "Protect the active client, restore only the infrastructure the business can afford, invoice merchants directly for Wolvo's service, and acquire a small number of suitable merchants before investing in growth.",
+            priorityCash: "Priority: cash flow",
+            earlyAccess: "Early Access: 1.000 DT / delivered order",
+            planningEstimate: "Planning estimate: 80 DT / client / month",
+            dayHorizon: "90-day horizon",
+            decisionRule: "Decision rule:",
+            decisionDesc: "Do not spend personal money on restoring service until the provider confirms the amount, recovery terms, data status, and ongoing costs—and the company has a credible plan to retain the active client and collect revenue.",
+            printPdf: "Print / Save as PDF",
+            exportCsv: "Export calculator assumptions (CSV)",
+            resetCalc: "Reset calculator",
+            financialTitle: "1. Financial baseline",
+            financialDesc: "Known costs from the current working assumptions. Replace estimates with invoices and the accountant's confirmed figures.",
+            server: "Server",
+            taxes: "Taxes / month",
+            premises: "Premises / month",
+            knownTotal: "Known monthly total",
+            excludes: "Excludes unlisted costs and debts",
+            costComposition: "Estimated monthly cost composition",
+            currentPosition: "Current position",
+            revenue: "Revenue",
+            lowCost: "Low cost",
+            highCost: "High cost",
+            monthlyGap: "Current monthly gap:",
+            gapDesc: "approximately 119–289 DT, before any unknown costs or old debts.",
+            costFormulas: "Cost formulas",
+            configTitle: "3. Configuration",
+            configDesc: "Configure tax rates, fees, and other assumptions. These values will be used in calculations throughout the document.",
+            serverCost: "Server cost (DT/6 months)",
+            monthlyTax: "Monthly tax estimate (DT)",
+            premisesCost: "Premises cost (DT/3-6 months)",
+            vatRate: "VAT rate (%)",
+            returnedFee: "Fee per returned order (DT)",
+            exchangeFee: "Fee per exchange order (DT)",
+            saveConfig: "Save configuration",
+            resetConfig: "Reset to defaults",
+            configSaved: "Configuration saved!",
+            configSavedDesc: "Your settings have been stored and will be used in calculations.",
+            teamTitle: "5. Team structure",
+            teamDesc: "Current team roles and responsibilities for efficient task delegation.",
+            ceo: "CEO",
+            commercial: "Commercial",
+            operations: "Operations",
+            delegation: "Delegation strategy:",
+            delegationDesc: "The CEO focuses on planning and decisions, Jawher focuses on commercial activities and client acquisition, while Nasim handles operational tasks and support. This division allows for efficient operations with limited availability.",
+            executionTitle: "6. 90-day execution plan",
+            executionDesc: "Work in order. The server being online is not success unless the company can keep it online and collect enough revenue.",
+            salesTitle: "7. Client acquisition with limited time",
+            salesDesc: "Do not build a sales operation that requires more time than you have. Focus on the easiest-to-reach prospects and one repeatable message.",
+            priority1: "Priority 1",
+            priority2: "Priority 2",
+            priority3: "Priority 3",
+            activeRetention: "Active client retention",
+            activeRetentionDesc: "Focus on keeping the current client satisfied and understand their needs to increase order volume.",
+            intigoReferrals: "Intigo referrals",
+            intigoReferralsDesc: "Ask the commercial contact to introduce merchants with recurring order volume and delivery pain points.",
+            merchantReferrals: "Merchant referrals",
+            merchantReferralsDesc: "Ask active clients and business contacts for introductions. Avoid paid advertising until conversion is proven.",
+            weeklyRoutine: "Three-hour weekly routine",
+            activity: "Activity",
+            time: "Time",
+            output: "Output",
+            prospecting: "Prospecting and follow-ups",
+            demo: "Demo / onboarding",
+            cashReview: "Cash and pipeline review",
+            qualifiedConversations: "New qualified conversations",
+            scheduledSession: "One scheduled session",
+            updatedScorecard: "Updated weekly scorecard",
+            pitchFirst: "Pitch the outcome first: centralize order tracking, identify risky orders, understand delivery performance, and encourage repeat purchases. Show only the features relevant to the merchant's problem.",
+            operationsTitle: "8. Payment and operating model",
+            operationsDesc: "Proposed future flow: delivery partners pay merchants directly; Wolvo invoices merchants separately for Wolvo's service.",
+            step1: "Step 1",
+            step2: "Step 2",
+            step3: "Step 3",
+            deliveryPartner: "Delivery partner → merchant",
+            deliveryPartnerDesc: "The delivery company settles the merchant's order proceeds directly under their existing agreement.",
+            wolvoMeasures: "Wolvo measures usage",
+            wolvoMeasuresDesc: "Generate a monthly delivered-order report with order IDs, statuses, billable quantities, unit fee, and exceptions.",
+            wolvoInvoice: "Wolvo → merchant invoice",
+            wolvoInvoiceDesc: "Issue Wolvo's invoice, record payment, send reminders, and reconcile the invoice against the report.",
+            minBilling: "Minimum billing controls",
+            legalTitle: "9. Tunisia: legal and accounting checks",
+            legalDesc: "These are questions to verify with a Tunisian accountant or lawyer—not definitive legal advice.",
+            governanceTitle: "10. Shareholder deadlock",
+            governanceDesc: "Do not assume every company action legally requires unanimous signatures just because that has been the practice so far. The answer depends on Wolvo's legal form, statutes, ownership percentages, and the type of decision.",
+            scorecardTitle: "11. Weekly scorecard",
+            scorecardDesc: "Update this every week. Track cash collected, not just invoices issued or verbal commitments.",
+            cashAvailable: "Cash available (DT)",
+            revenueCollected: "Revenue collected this month (DT)",
+            revenueInvoiced: "Revenue invoiced this month (DT)",
+            qualifiedProspects: "Qualified prospects in pipeline",
+            collectionRate: "Collections rate",
+            monthlyGap: "Monthly operating gap",
+            runway: "Runway at current costs",
+            tasksTitle: "12. Task management",
+            tasksDesc: "Track tasks, subtasks, and clarifications for the team. Assign tasks to team members and monitor progress.",
+            newTask: "New task title",
+            assignTo: "Assign to",
+            priority: "Priority",
+            notes: "Notes/Clarifications",
+            addTask: "Add task",
+            clearCompleted: "Clear completed",
+            noTasks: "No tasks yet. Add a task above to get started.",
+            sourcesTitle: "13. Sources, assumptions, and limitations",
+            sourcesDesc: "Business costs, client revenue, pricing, and operational facts below come from Wolvo's internal information supplied for this plan. Public sources are linked only for legal/accounting checks."
+          },
+          fr: {
+            overview: "Aperçu",
+            financials: "Base financière",
+            calculator: "Calculateur de rentabilité",
+            config: "Configuration",
+            pricing: "Tarification Early Access",
+            execution: "Structure de l'équipe",
+            executionPlan: "Exécution 90 jours",
+            sales: "Acquisition de clients",
+            operations: "Paiement et opérations",
+            legal: "Tunisie: vérification",
+            governance: "Problème d'actionnaires",
+            scorecard: "Tableau de bord hebdo",
+            tasks: "Gestion des tâches",
+            sources: "Sources et hypothèses",
+            heroTitle: "Rendre Wolvo autonome.",
+            heroDesc: "Protéger le client actif, restaurer uniquement l'infrastructure que l'entreprise peut se permettre, facturer directement les commerçants pour le service Wolvo, et acquérir un petit nombre de commerçants adaptés avant d'investir dans la croissance.",
+            priorityCash: "Priorité: trésorerie",
+            earlyAccess: "Early Access: 1.000 DT / commande livrée",
+            planningEstimate: "Estimation de planification: 80 DT / client / mois",
+            dayHorizon: "Horizon 90 jours",
+            decisionRule: "Règle de décision:",
+            decisionDesc: "Ne pas dépenser d'argent personnel pour restaurer le service jusqu'à ce que le fournisseur confirme le montant, les conditions de récupération, le statut des données et les coûts continus - et que l'entreprise ait un plan crédible pour conserver le client actuel et collecter les revenus.",
+            printPdf: "Imprimer / Sauvegarder en PDF",
+            exportCsv: "Exporter les hypothèses du calculateur (CSV)",
+            resetCalc: "Réinitialiser le calculateur",
+            financialTitle: "1. Base financière",
+            financialDesc: "Coûts connus des hypothèses de travail actuelles. Remplacez les estimations par les factures et les chiffres confirmés par le comptable.",
+            server: "Serveur",
+            taxes: "Taxes / mois",
+            premises: "Locaux / mois",
+            knownTotal: "Total mensuel connu",
+            excludes: "Exclut les coûts et dettes non répertoriés",
+            costComposition: "Composition estimée des coûts mensuels",
+            currentPosition: "Position actuelle",
+            revenue: "Revenus",
+            lowCost: "Coût faible",
+            highCost: "Coût élevé",
+            monthlyGap: "Écart mensuel actuel:",
+            gapDesc: "environ 119–289 DT, avant les coûts inconnus ou les anciennes dettes.",
+            costFormulas: "Formules de coût",
+            configTitle: "3. Configuration",
+            configDesc: "Configurez les taux d'imposition, les frais et autres hypothèses. Ces valeurs seront utilisées dans les calculs tout au long du document.",
+            serverCost: "Coût du serveur (DT/6 mois)",
+            monthlyTax: "Estimation des taxes mensuelles (DT)",
+            premisesCost: "Coût des locaux (DT/3-6 mois)",
+            vatRate: "Taux de TVA (%)",
+            returnedFee: "Frais par commande retournée (DT)",
+            exchangeFee: "Frais par échange (DT)",
+            saveConfig: "Enregistrer la configuration",
+            resetConfig: "Réinitialiser par défaut",
+            configSaved: "Configuration enregistrée!",
+            configSavedDesc: "Vos paramètres ont été stockés et seront utilisés dans les calculs.",
+            teamTitle: "5. Structure de l'équipe",
+            teamDesc: "Rôles et responsabilités actuels de l'équipe pour une délégation efficace des tâches.",
+            ceo: "PDG",
+            commercial: "Commercial",
+            operations: "Opérations",
+            delegation: "Stratégie de délégation:",
+            delegationDesc: "Le PDG se concentre sur la planification et les décisions, Jawher se concentre sur les activités commerciales et l'acquisition de clients, tandis que Nasim gère les tâches opérationnelles et le support. Cette division permet des opérations efficaces avec une disponibilité limitée.",
+            executionTitle: "6. Plan d'exécution sur 90 jours",
+            executionDesc: "Travaillez dans l'ordre. Le serveur en ligne n'est pas un succès à moins que l'entreprise puisse le maintenir en ligne et collecter suffisamment de revenus.",
+            salesTitle: "7. Acquisition de clients avec un temps limité",
+            salesDesc: "Ne construisez pas une opération de vente qui nécessite plus de temps que vous n'en avez. Concentrez-vous sur les prospects les plus faciles à atteindre et un message répétitif.",
+            priority1: "Priorité 1",
+            priority2: "Priorité 2",
+            priority3: "Priorité 3",
+            activeRetention: "Rétention du client actif",
+            activeRetentionDesc: "Concentrez-vous sur la satisfaction du client actuel et comprenez ses besoins pour augmenter le volume des commandes.",
+            intigoReferrals: "Références Intigo",
+            intigoReferralsDesc: "Demandez au contact commercial d'introduire des commerçants avec un volume de commandes récurrent et des problèmes de livraison.",
+            merchantReferrals: "Références de commerçants",
+            merchantReferralsDesc: "Demandez aux clients actuels et aux contacts commerciaux des présentations. Évitez la publicité payante jusqu'à ce que la conversion soit prouvée.",
+            weeklyRoutine: "Routine hebdomadaire de trois heures",
+            activity: "Activité",
+            time: "Temps",
+            output: "Résultat",
+            prospecting: "Prospection et suivis",
+            demo: "Démo / intégration",
+            cashReview: "Révision de la trésorerie et du pipeline",
+            qualifiedConversations: "Nouvelles conversations qualifiées",
+            scheduledSession: "Une session planifiée",
+            updatedScorecard: "Tableau de bord hebdo mis à jour",
+            pitchFirst: "Présentez d'abord le résultat: centraliser le suivi des commandes, identifier les commandes risquées, comprendre les performances de livraison et encourager les achats répétés. Montrez uniquement les fonctionnalités pertinentes pour le problème du commerçant.",
+            operationsTitle: "8. Modèle de paiement et d'exploitation",
+            operationsDesc: "Flux futur proposé: les partenaires de livraison paient directement les commerçants; Wolvo facture séparément les commerçants pour le service Wolvo.",
+            step1: "Étape 1",
+            step2: "Étape 2",
+            step3: "Étape 3",
+            deliveryPartner: "Partenaire de livraison → commerçant",
+            deliveryPartnerDesc: "La société de livraison règle directement les produits de la commande du commerçant selon leur accord existant.",
+            wolvoMeasures: "Wolvo mesure l'utilisation",
+            wolvoMeasuresDesc: "Générer un rapport mensuel des commandes livrées avec les ID de commande, les statuts, les quantités facturables, les frais unitaires et les exceptions.",
+            wolvoInvoice: "Wolvo → facture commerçant",
+            wolvoInvoiceDesc: "Émettre la facture Wolvo, enregistrer le paiement, envoyer des rappels et réconcilier la facture avec le rapport.",
+            minBilling: "Contrôles de facturation minimum",
+            legalTitle: "9. Vérifications légales et comptables en Tunisie",
+            legalDesc: "Ce sont des questions à vérifier avec un comptable ou avocat tunisien - pas un avis juridique définitif.",
+            governanceTitle: "10. Blocage des actionnaires",
+            governanceDesc: "Ne supposez pas que chaque action de l'entreprise nécessite légalement des signatures unanimes simplement parce que c'était la pratique jusqu'à présent. La réponse dépend de la forme légale de Wolvo, des statuts, des pourcentages de propriété et du type de décision.",
+            scorecardTitle: "11. Tableau de bord hebdomadaire",
+            scorecardDesc: "Mettez à jour ceci chaque semaine. Suivez l'argent collecté, pas seulement les factures émises ou les engagements verbaux.",
+            cashAvailable: "Trésorerie disponible (DT)",
+            revenueCollected: "Revenus collectés ce mois (DT)",
+            revenueInvoiced: "Revenus facturés ce mois (DT)",
+            qualifiedProspects: "Prospects qualifiés dans le pipeline",
+            collectionRate: "Taux de collecte",
+            monthlyGap: "Écart d'exploitation mensuel",
+            runway: "Marge de manœuvre aux coûts actuels",
+            tasksTitle: "12. Gestion des tâches",
+            tasksDesc: "Suivez les tâches, sous-tâches et clarifications pour l'équipe. Attribuez des tâches aux membres de l'équipe et surveillez les progrès.",
+            newTask: "Titre de la nouvelle tâche",
+            assignTo: "Attribuer à",
+            priority: "Priorité",
+            notes: "Notes/Clarifications",
+            addTask: "Ajouter une tâche",
+            clearCompleted: "Effacer les terminées",
+            noTasks: "Aucune tâche pour le moment. Ajoutez une tâche ci-dessus pour commencer.",
+            sourcesTitle: "13. Sources, hypothèses et limitations",
+            sourcesDesc: "Les coûts d'entreprise, les revenus des clients, la tarification et les faits opérationnels ci-dessous proviennent des informations internes de Wolvo fournies pour ce plan. Les sources publiques sont liées uniquement pour les vérifications légales/comptables."
+          }
+        };
+
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+          currentLang = lang;
+          const t = translations[lang];
+
+          // Update navigation
+          document.querySelectorAll('#sideNav a').forEach((link, index) => {
+            const keys = ['overview', 'financials', 'calculator', 'config', 'pricing', 'execution', 'executionPlan', 'sales', 'operations', 'legal', 'governance', 'scorecard', 'tasks', 'sources'];
+            if (keys[index]) {
+              link.textContent = t[keys[index]];
+            }
+          });
+
+          // Update hero section
+          const heroTitle = document.querySelector('#overview h1');
+          const heroDesc = document.querySelector('#overview p');
+          if (heroTitle) heroTitle.textContent = t.heroTitle;
+          if (heroDesc) heroDesc.textContent = t.heroDesc;
+
+          // Update pills
+          const pills = document.querySelectorAll('.pill');
+          if (pills[0]) pills[0].textContent = t.priorityCash;
+          if (pills[1]) pills[1].textContent = t.earlyAccess;
+          if (pills[2]) pills[2].textContent = t.planningEstimate;
+          if (pills[3]) pills[3].textContent = t.dayHorizon;
+
+          // Update callout
+          const callout = document.querySelector('#overview .callout');
+          if (callout) {
+            callout.innerHTML = `<strong>${t.decisionRule}</strong> ${t.decisionDesc}`;
+          }
+
+          // Update buttons
+          const buttons = document.querySelectorAll('.action-row .btn');
+          if (buttons[0]) buttons[0].textContent = t.printPdf;
+          if (buttons[1]) buttons[1].textContent = t.exportCsv;
+          if (buttons[2]) buttons[2].textContent = t.resetCalc;
+
+          // Update section headers
+          const sections = [
+            { id: 'financials', key: 'financialTitle', descKey: 'financialDesc' },
+            { id: 'config', key: 'configTitle', descKey: 'configDesc' },
+            { id: 'execution', key: 'teamTitle', descKey: 'teamDesc' },
+            { id: 'execution-plan', key: 'executionTitle', descKey: 'executionDesc' },
+            { id: 'sales', key: 'salesTitle', descKey: 'salesDesc' },
+            { id: 'operations', key: 'operationsTitle', descKey: 'operationsDesc' },
+            { id: 'legal', key: 'legalTitle', descKey: 'legalDesc' },
+            { id: 'governance', key: 'governanceTitle', descKey: 'governanceDesc' },
+            { id: 'scorecard', key: 'scorecardTitle', descKey: 'scorecardDesc' },
+            { id: 'tasks', key: 'tasksTitle', descKey: 'tasksDesc' },
+            { id: 'sources', key: 'sourcesTitle', descKey: 'sourcesDesc' }
+          ];
+
+          sections.forEach(section => {
+            const el = document.getElementById(section.id);
+            if (el) {
+              const h2 = el.querySelector('h2');
+              const p = el.querySelector('.section-intro');
+              if (h2) h2.textContent = t[section.key];
+              if (p) p.textContent = t[section.descKey];
+            }
+          });
+
+          // Update config labels
+          const configLabels = document.querySelectorAll('#config label');
+          const configKeys = ['serverCost', 'monthlyTax', 'premisesCost', 'vatRate', 'returnedFee', 'exchangeFee'];
+          configLabels.forEach((label, i) => {
+            if (configKeys[i]) label.textContent = t[configKeys[i]];
+          });
+
+          const configButtons = document.querySelectorAll('#config .btn');
+          if (configButtons[0]) configButtons[0].textContent = t.saveConfig;
+          if (configButtons[1]) configButtons[1].textContent = t.resetConfig;
+
+          // Update task labels
+          const taskLabels = document.querySelectorAll('#tasks label');
+          const taskKeys = ['newTask', 'assignTo', 'priority', 'notes'];
+          taskLabels.forEach((label, i) => {
+            if (taskKeys[i]) label.textContent = t[taskKeys[i]];
+          });
+
+          const taskButtons = document.querySelectorAll('#tasks .btn');
+          if (taskButtons[0]) taskButtons[0].textContent = t.addTask;
+          if (taskButtons[1]) taskButtons[1].textContent = t.clearCompleted;
+
+          // Update scorecard labels
+          const scorecardLabels = document.querySelectorAll('#scorecard label');
+          const scorecardKeys = ['cashAvailable', 'revenueCollected', 'revenueInvoiced', 'qualifiedProspects'];
+          scorecardLabels.forEach((label, i) => {
+            if (scorecardKeys[i]) label.textContent = t[scorecardKeys[i]];
+          });
+
+          // Update language button
+          $("langToggle").textContent = lang === 'en' ? '🇫🇷 Français' : '🇬🇧 English';
+        }
+
+        $("langToggle").addEventListener("click", () => {
+          setLanguage(currentLang === 'en' ? 'fr' : 'en');
+        });
         const links = [...document.querySelectorAll("#sideNav a")];
         const sections = links
           .map((a) => document.querySelector(a.getAttribute("href")))
