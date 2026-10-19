@@ -5,24 +5,647 @@
   "calculator": {
     "fee": "1",
     "orders": "80",
-    "cost": "320",
+    "cost": "332",
     "clients": "1",
     "target": "500",
     "manualRevenue": ""
   },
   "scorecard": {
-    "cashOnHand": "0",
-    "collected": "80",
-    "invoiced": "80",
-    "pipeline": "0"
+    "cashOnHand": "",
+    "collected": "",
+    "invoiced": "",
+    "pipeline": "",
+    "activeClients": "1",
+    "outreachCount": "",
+    "demosCount": "",
+    "overdueBills": "",
+    "scorecardDate": ""
   },
+  "cashBridge": {
+    "bridgeCash": "0",
+    "bridgeRestore": "834.238",
+    "bridgeArrears": "0",
+    "bridgeBills": "630",
+    "bridgeReceipts": "0",
+    "bridgeDate": "2026-10-31"
+  },
+  "executionChecks": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
   "config": {
     "server": "834.238",
+    "email": "94.800",
+    "domain": "54",
     "tax": "30",
     "premises": "600",
     "vatRate": "19",
     "returnedFee": "0.500",
     "exchangeFee": "0.500"
   },
-  "tasks": []
+  "tasks": [
+    {
+      "id": 26000000000001,
+      "seedKey": "urgent-hosting-recovery",
+      "title": "Get written confirmation of server suspension and recovery terms",
+      "assignees": [
+        "issam"
+      ],
+      "priority": "urgent",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Contact the host before paying. Confirm the exact amount due, whether service returns immediately after payment, any reactivation delay, data and backup status, and the next renewal date. Do not assume payment alone restores service.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000011,
+          "title": "Send the support ticket asking for the exact recovery steps and timeline",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Send the support ticket asking for the exact recovery steps and timeline",
+            "fr": "Envoyer le ticket au support pour demander les étapes et le délai exacts de rétablissement"
+          }
+        },
+        {
+          "id": 26000000000012,
+          "title": "Confirm whether data, backups, and server configuration are still intact",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Confirm whether data, backups, and server configuration are still intact",
+            "fr": "Confirmer que les données, sauvegardes et la configuration du serveur sont toujours intactes"
+          }
+        },
+        {
+          "id": 26000000000013,
+          "title": "Record the confirmed amount, payment method, and next renewal date",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Record the confirmed amount, payment method, and next renewal date",
+            "fr": "Noter le montant confirmé, le moyen de paiement et la prochaine date de renouvellement"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Get written confirmation of server suspension and recovery terms",
+        "fr": "Obtenir une confirmation écrite de la suspension du serveur et des conditions de rétablissement"
+      },
+      "notesTranslations": {
+        "en": "Contact the host before paying. Confirm the exact amount due, whether service returns immediately after payment, any reactivation delay, data and backup status, and the next renewal date. Do not assume payment alone restores service.",
+        "fr": "Contactez l’hébergeur avant tout paiement. Confirmez le montant exact, le délai de réactivation après paiement, l’état des données et des sauvegardes ainsi que la prochaine échéance. Ne supposez pas que le paiement rétablit immédiatement le service."
+      }
+    },
+    {
+      "id": 26000000000002,
+      "seedKey": "urgent-cash-bridge",
+      "title": "Confirm the cash bridge and decide what the company can safely pay",
+      "assignees": [
+        "issam"
+      ],
+      "priority": "urgent",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Replace the prefilled estimates with confirmed cash, bills, and dates. Make a written go/no-go decision on restoring the server that includes the next six-month renewal and a credible way to cover ongoing costs.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000021,
+          "title": "Confirm available company cash and any committed contribution",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Confirm available company cash and any committed contribution",
+            "fr": "Confirmer la trésorerie disponible de l’entreprise et tout apport réellement engagé"
+          }
+        },
+        {
+          "id": 26000000000022,
+          "title": "Verify tax, premises, hosting, email, domain, and overdue bill amounts and due dates",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Verify tax, premises, hosting, email, domain, and overdue bill amounts and due dates",
+            "fr": "Vérifier les montants et échéances des impôts, locaux, serveur, e-mails, domaine et factures en retard"
+          }
+        },
+        {
+          "id": 26000000000023,
+          "title": "Update the Immediate cash bridge and record the payment decision",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Update the Immediate cash bridge and record the payment decision",
+            "fr": "Mettre à jour le plan de trésorerie immédiat et noter la décision de paiement"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Confirm the cash bridge and decide what the company can safely pay",
+        "fr": "Confirmer le besoin de trésorerie et décider ce que l’entreprise peut payer sans risque"
+      },
+      "notesTranslations": {
+        "en": "Replace the prefilled estimates with confirmed cash, bills, and dates. Make a written go/no-go decision on restoring the server that includes the next six-month renewal and a credible way to cover ongoing costs.",
+        "fr": "Remplacez les estimations préremplies par la trésorerie, les factures et les échéances confirmées. Prenez une décision écrite sur la réactivation du serveur en tenant compte du prochain renouvellement semestriel et d’un moyen crédible de couvrir les coûts courants."
+      }
+    },
+    {
+      "id": 26000000000003,
+      "seedKey": "urgent-protect-active-client",
+      "title": "Protect and retain the active paying client",
+      "assignees": [
+        "issam",
+        "nasim"
+      ],
+      "priority": "urgent",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Contact the client promptly, explain the confirmed service status clearly, and agree on the next operating and payment steps. Confirm how the client uses Intigo and avoid promising a restoration time until the host confirms it.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000031,
+          "title": "Check the client's immediate support needs and Intigo order workflow",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Check the client's immediate support needs and Intigo order workflow",
+            "fr": "Vérifier les besoins immédiats de la cliente et son processus de commandes avec Intigo"
+          }
+        },
+        {
+          "id": 26000000000032,
+          "title": "Confirm current monthly usage, amount due, and expected payment date",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Confirm current monthly usage, amount due, and expected payment date",
+            "fr": "Confirmer l’utilisation mensuelle, le montant dû et la date de paiement prévue"
+          }
+        },
+        {
+          "id": 26000000000033,
+          "title": "Agree on a client update plan tied to the host's confirmed response",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Agree on a client update plan tied to the host's confirmed response",
+            "fr": "Convenir d’un plan de communication lié à la réponse confirmée de l’hébergeur"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Protect and retain the active paying client",
+        "fr": "Fidéliser la cliente actuellement active et payante"
+      },
+      "notesTranslations": {
+        "en": "Contact the client promptly, explain the confirmed service status clearly, and agree on the next operating and payment steps. Confirm how the client uses Intigo and avoid promising a restoration time until the host confirms it.",
+        "fr": "Contactez rapidement la cliente, expliquez clairement l’état confirmé du service et convenez des prochaines étapes opérationnelles et de paiement. Confirmez comment elle utilise Intigo et ne promettez aucun délai de réactivation avant confirmation de l’hébergeur."
+      }
+    },
+    {
+      "id": 26000000000004,
+      "seedKey": "first-merchant-outreach-sprint",
+      "title": "Start a focused merchant outreach sprint",
+      "assignees": [
+        "jawher"
+      ],
+      "priority": "next",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Prioritize merchant referrals through Intigo and direct outreach to merchants already shipping with Intigo. Focus on recurring delivery volume and a clear need for order tracking, delivery insights, or repeat-purchase campaigns. Keep the offer simple and do not promise unready features.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000041,
+          "title": "Build a shortlist of 20 suitable Intigo merchants and warm introductions",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Build a shortlist of 20 suitable Intigo merchants and warm introductions",
+            "fr": "Établir une liste de 20 commerçants Intigo adaptés et de contacts à recommander"
+          }
+        },
+        {
+          "id": 26000000000042,
+          "title": "Contact the first five qualified merchants already using Intigo and log responses",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Contact the first five qualified merchants already using Intigo and log responses",
+            "fr": "Contacter les cinq premiers prospects qualifiés utilisant Intigo et noter leurs réponses"
+          }
+        },
+        {
+          "id": 26000000000043,
+          "title": "Schedule a product demo and record objections and next steps",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Schedule a product demo and record objections and next steps",
+            "fr": "Planifier une démonstration et consigner les objections et prochaines étapes"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Start a focused merchant outreach sprint",
+        "fr": "Lancer une prospection ciblée auprès des commerçants"
+      },
+      "notesTranslations": {
+        "en": "Prioritize merchant referrals through Intigo and direct outreach to merchants already shipping with Intigo. Focus on recurring delivery volume and a clear need for order tracking, delivery insights, or repeat-purchase campaigns. Keep the offer simple and do not promise unready features.",
+        "fr": "Priorisez les mises en relation par Intigo et le contact direct de commerçants qui expédient déjà avec Intigo. Ciblez les volumes réguliers et les besoins de suivi des commandes, d’analyse des livraisons ou de fidélisation. Présentez une offre simple sans promettre de fonctionnalités qui ne sont pas prêtes."
+      }
+    },
+    {
+      "id": 26000000000005,
+      "seedKey": "billing-and-accounting-workflow",
+      "title": "Validate the separate client invoicing workflow",
+      "assignees": [
+        "issam",
+        "nasim"
+      ],
+      "priority": "next",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Prepare a practical monthly process where Intigo pays merchants directly under its payout schedule and Wolvo invoices for its platform service. Have the Tunisian accountant confirm invoicing, tax treatment, records, agreement terms, due dates, reminders, and any suspension rules before rollout.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000051,
+          "title": "Draft the monthly Intigo delivered-order report and reconciliation steps",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Draft the monthly Intigo delivered-order report and reconciliation steps",
+            "fr": "Préparer le rapport mensuel des commandes livrées via Intigo et les étapes de rapprochement"
+          }
+        },
+        {
+          "id": 26000000000052,
+          "title": "Ask the accountant to confirm invoice, tax, and recordkeeping requirements",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Ask the accountant to confirm invoice, tax, and recordkeeping requirements",
+            "fr": "Demander au comptable de confirmer les règles de facturation, fiscales et de conservation des justificatifs"
+          }
+        },
+        {
+          "id": 26000000000053,
+          "title": "Document client payment terms, reminders, grace period, and data access",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Document client payment terms, reminders, grace period, and data access",
+            "fr": "Documenter les conditions de paiement, relances, délai de grâce et accès aux données"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Validate the separate client invoicing workflow",
+        "fr": "Valider le processus de facturation directe des clients"
+      },
+      "notesTranslations": {
+        "en": "Prepare a practical monthly process where Intigo pays merchants directly under its payout schedule and Wolvo invoices for its platform service. Have the Tunisian accountant confirm invoicing, tax treatment, records, agreement terms, due dates, reminders, and any suspension rules before rollout.",
+        "fr": "Préparez un processus mensuel où Intigo paie directement les commerçants et Wolvo facture séparément son service de plateforme. Avant le lancement, demandez au comptable tunisien de confirmer la facturation, le traitement fiscal, les justificatifs, les conditions contractuelles, les échéances, les relances et les règles de suspension."
+      }
+    },
+    {
+      "id": 26000000000006,
+      "seedKey": "shareholder-deadlock-advice",
+      "title": "Get legal advice on shareholder deadlock and decision authority",
+      "assignees": [
+        "issam"
+      ],
+      "priority": "next",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Clarify the company's legal form, voting thresholds, signature requirements, and lawful options before approaching investors or attempting any shareholder change. Do not assume unanimous signatures are required for every action.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000061,
+          "title": "Gather the statutes, shareholder agreements, cap table, and meeting records",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Gather the statutes, shareholder agreements, cap table, and meeting records",
+            "fr": "Rassembler les statuts, pactes d’actionnaires, la répartition du capital et les procès-verbaux"
+          }
+        },
+        {
+          "id": 26000000000062,
+          "title": "Ask a Tunisian corporate lawyer which decisions need which approvals",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Ask a Tunisian corporate lawyer which decisions need which approvals",
+            "fr": "Demander à un avocat tunisien quelles décisions exigent quelles approbations"
+          }
+        },
+        {
+          "id": 26000000000063,
+          "title": "Write down lawful next steps and any investor-facing constraints",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Write down lawful next steps and any investor-facing constraints",
+            "fr": "Noter les prochaines étapes légales et les contraintes pour les investisseurs"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Get legal advice on shareholder deadlock and decision authority",
+        "fr": "Obtenir un avis juridique sur le blocage des actionnaires et les pouvoirs de décision"
+      },
+      "notesTranslations": {
+        "en": "Clarify the company's legal form, voting thresholds, signature requirements, and lawful options before approaching investors or attempting any shareholder change. Do not assume unanimous signatures are required for every action.",
+        "fr": "Clarifiez la forme juridique de l’entreprise, les seuils de vote, les exigences de signature et les options légales avant de contacter des investisseurs ou d’envisager un changement d’actionnariat. Ne supposez pas que l’unanimité est requise pour chaque décision."
+      }
+    },
+    {
+      "id": 26000000000007,
+      "seedKey": "mohamed-interim-role",
+      "title": "Define a short-term support assignment for Mohamed Ahmed",
+      "assignees": [
+        "issam",
+        "mohamed"
+      ],
+      "priority": "normal",
+      "status": "backlog",
+      "completed": false,
+      "notes": "His ongoing role is undecided. Agree on a small, time-limited assignment that uses his operations and client coordination experience, with a clear owner and deliverable, before adding open-ended responsibilities.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000071,
+          "title": "Review the most urgent client or Intigo coordination work",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Review the most urgent client or Intigo coordination work",
+            "fr": "Examiner les besoins urgents de coordination client ou avec Intigo"
+          }
+        },
+        {
+          "id": 26000000000072,
+          "title": "Agree on one deliverable, time commitment, and review date",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Agree on one deliverable, time commitment, and review date",
+            "fr": "Définir un livrable, un temps consacré et une date de bilan"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Define a short-term support assignment for Mohamed Ahmed",
+        "fr": "Définir une mission de soutien temporaire pour Mohamed Ahmed"
+      },
+      "notesTranslations": {
+        "en": "His ongoing role is undecided. Agree on a small, time-limited assignment that uses his operations and client coordination experience, with a clear owner and deliverable, before adding open-ended responsibilities.",
+        "fr": "Son rôle à long terme reste à définir. Convenez d’une mission courte et limitée qui utilise son expérience en opérations et coordination client, avec un responsable et un livrable précis, avant de lui confier des responsabilités ouvertes."
+      }
+    },
+    {
+      "id": 26000000000008,
+      "seedKey": "business-bank-account",
+      "title": "Open a dedicated business bank account and set payment controls",
+      "assignees": [
+        "issam"
+      ],
+      "priority": "next",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Confirm the company's account requirements with the bank and accountant, then use the account for Wolvo's own service revenue and bills. Keep Intigo paying merchants directly; do not route client order proceeds through Wolvo.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000081,
+          "title": "Ask the bank and accountant for company documents and signatory requirements",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Ask the bank and accountant for company documents and signatory requirements",
+            "fr": "Demander à la banque et au comptable les documents de l’entreprise et les exigences de signature"
+          }
+        },
+        {
+          "id": 26000000000082,
+          "title": "Open the account in the company's legal name and secure online access",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Open the account in the company's legal name and secure online access",
+            "fr": "Ouvrir le compte au nom légal de l’entreprise et sécuriser l’accès en ligne"
+          }
+        },
+        {
+          "id": 26000000000083,
+          "title": "Confirm how invoices, client payments, and business expenses will be recorded",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Confirm how invoices, client payments, and business expenses will be recorded",
+            "fr": "Confirmer le suivi comptable des factures, paiements clients et dépenses professionnelles"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Open a dedicated business bank account and set payment controls",
+        "fr": "Ouvrir un compte bancaire professionnel dédié et définir les contrôles de paiement"
+      },
+      "notesTranslations": {
+        "en": "Confirm the company's account requirements with the bank and accountant, then use the account for Wolvo's own service revenue and bills. Keep Intigo paying merchants directly; do not route client order proceeds through Wolvo.",
+        "fr": "Confirmez auprès de la banque et du comptable les exigences du compte de l’entreprise, puis utilisez-le pour les revenus de service et les dépenses de Wolvo. Intigo doit continuer à payer directement les commerçants; ne faites pas transiter les recettes des commandes des clients par Wolvo."
+      }
+    },
+    {
+      "id": 26000000000009,
+      "seedKey": "delivery-partner-onboarding",
+      "title": "Set up Intigo contacts and merchant onboarding",
+      "assignees": [
+        "jawher",
+        "nasim"
+      ],
+      "priority": "next",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Establish accountable commercial and operational contacts at Intigo. Document Intigo's merchant signup, account setup, technical access, service coverage, payout schedule, and support process before promising onboarding timelines to clients.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000091,
+          "title": "Confirm Intigo commercial and operations contacts",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Confirm Intigo commercial and operations contacts",
+            "fr": "Confirmer les contacts commerciaux et opérationnels d’Intigo"
+          }
+        },
+        {
+          "id": 26000000000092,
+          "title": "Document Intigo merchant onboarding, integration, and service coverage requirements",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Document Intigo merchant onboarding, integration, and service coverage requirements",
+            "fr": "Documenter les exigences Intigo d’inscription, d’intégration et de couverture des services"
+          }
+        },
+        {
+          "id": 26000000000093,
+          "title": "Record Intigo escalation channels, response expectations, and follow-up cadence",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Record Intigo escalation channels, response expectations, and follow-up cadence",
+            "fr": "Noter les canaux d’escalade d’Intigo, les délais de réponse attendus et le rythme de suivi"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Set up Intigo contacts and merchant onboarding",
+        "fr": "Établir les contacts Intigo et le processus d’intégration des commerçants"
+      },
+      "notesTranslations": {
+        "en": "Establish accountable commercial and operational contacts at Intigo. Document Intigo's merchant signup, account setup, technical access, service coverage, payout schedule, and support process before promising onboarding timelines to clients.",
+        "fr": "Identifiez les contacts commerciaux et opérationnels responsables chez Intigo. Documentez l’inscription des commerçants, la création de compte, les accès techniques, les zones desservies, le calendrier de paiement et le support avant de promettre un délai d’intégration aux clients."
+      }
+    },
+    {
+      "id": 26000000000010,
+      "seedKey": "client-onboarding-checklist",
+      "title": "Create a repeatable client onboarding checklist",
+      "assignees": [
+        "nasim",
+        "issam"
+      ],
+      "priority": "next",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Make every new merchant setup consistent from signed agreement to first successful delivery through Intigo. Include Intigo account setup, testing, training, Wolvo billing expectations, and the support contact. Keep the checklist short enough to use for every client.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000101,
+          "title": "List the client details, agreement, pricing, and permissions needed before setup",
+          "completed": false,
+          "titleTranslations": {
+            "en": "List the client details, agreement, pricing, and permissions needed before setup",
+            "fr": "Lister les informations client, le contrat, le tarif et les accès nécessaires avant la configuration"
+          }
+        },
+        {
+          "id": 26000000000102,
+          "title": "Document Intigo account connection and a first test order",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Document Intigo account connection and a first test order",
+            "fr": "Documenter la connexion du compte Intigo et une première commande de test"
+          }
+        },
+        {
+          "id": 26000000000103,
+          "title": "Add client training, support escalation, and first invoice handoff steps",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Add client training, support escalation, and first invoice handoff steps",
+            "fr": "Ajouter la formation client, l’escalade du support et le passage à la première facture"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Create a repeatable client onboarding checklist",
+        "fr": "Créer une liste de contrôle réutilisable pour l’intégration des clients"
+      },
+      "notesTranslations": {
+        "en": "Make every new merchant setup consistent from signed agreement to first successful delivery through Intigo. Include Intigo account setup, testing, training, Wolvo billing expectations, and the support contact. Keep the checklist short enough to use for every client.",
+        "fr": "Rendez chaque configuration de commerçant cohérente, de la signature du contrat à la première livraison réussie via Intigo. Incluez la configuration du compte Intigo, les tests, la formation, les modalités de facturation Wolvo et le contact support. Gardez une liste assez courte pour chaque client."
+      }
+    },
+    {
+      "id": 26000000000011,
+      "seedKey": "production-recovery-checklist",
+      "title": "Prepare a production recovery and continuity checklist",
+      "assignees": [
+        "issam"
+      ],
+      "priority": "urgent",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Before paying for restoration, confirm the host's recovery and backup status. After service is restored, verify the core client workflow and record the next renewal, backup location, responsible contacts, and recovery steps so a future suspension or outage is less disruptive.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000111,
+          "title": "Confirm backup availability and the safest restoration path with the host",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Confirm backup availability and the safest restoration path with the host",
+            "fr": "Confirmer avec l’hébergeur la disponibilité des sauvegardes et la méthode de restauration la plus sûre"
+          }
+        },
+        {
+          "id": 26000000000112,
+          "title": "After restoration, test login, order flow, Intigo connection, and tracking",
+          "completed": false,
+          "titleTranslations": {
+            "en": "After restoration, test login, order flow, Intigo connection, and tracking",
+            "fr": "Après le rétablissement, tester la connexion, les commandes, la connexion Intigo et le suivi"
+          }
+        },
+        {
+          "id": 26000000000113,
+          "title": "Record renewal date, backup checks, recovery contacts, and access ownership",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Record renewal date, backup checks, recovery contacts, and access ownership",
+            "fr": "Noter la date de renouvellement, les contrôles de sauvegarde, les contacts et les responsables des accès"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Prepare a production recovery and continuity checklist",
+        "fr": "Préparer une liste de contrôle pour le rétablissement et la continuité du service"
+      },
+      "notesTranslations": {
+        "en": "Before paying for restoration, confirm the host's recovery and backup status. After service is restored, verify the core client workflow and record the next renewal, backup location, responsible contacts, and recovery steps so a future suspension or outage is less disruptive.",
+        "fr": "Avant de payer la réactivation, confirmez avec l’hébergeur l’état des sauvegardes et les étapes de récupération. Après le rétablissement, vérifiez le parcours client essentiel et consignez le prochain renouvellement, l’emplacement des sauvegardes, les contacts responsables et les étapes de reprise."
+      }
+    },
+    {
+      "id": 26000000000012,
+      "seedKey": "support-and-reclamation-process",
+      "title": "Document the client support and reclamation handling process",
+      "assignees": [
+        "nasim"
+      ],
+      "priority": "next",
+      "status": "backlog",
+      "completed": false,
+      "notes": "Set one clear path for clients to report Intigo delivery issues, reclamations, and platform problems. Define how each case is recorded, who follows up with Intigo, when the client receives an update, and when an issue is escalated.",
+      "createdAt": "2026-10-19T09:00:00.000Z",
+      "subtasks": [
+        {
+          "id": 26000000000121,
+          "title": "Define the minimum issue details and evidence to collect from the client",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Define the minimum issue details and evidence to collect from the client",
+            "fr": "Définir les informations et justificatifs minimums à recueillir auprès du client"
+          }
+        },
+        {
+          "id": 26000000000122,
+          "title": "Set triage, Intigo escalation, client update, and closure steps",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Set triage, Intigo escalation, client update, and closure steps",
+            "fr": "Établir les étapes de triage, d’escalade auprès d’Intigo, d’information client et de clôture"
+          }
+        },
+        {
+          "id": 26000000000123,
+          "title": "Create a simple issue log and weekly review of recurring problems",
+          "completed": false,
+          "titleTranslations": {
+            "en": "Create a simple issue log and weekly review of recurring problems",
+            "fr": "Créer un registre simple des incidents et une revue hebdomadaire des problèmes récurrents"
+          }
+        }
+      ],
+      "titleTranslations": {
+        "en": "Document the client support and reclamation handling process",
+        "fr": "Documenter le processus de support client et de gestion des réclamations"
+      },
+      "notesTranslations": {
+        "en": "Set one clear path for clients to report Intigo delivery issues, reclamations, and platform problems. Define how each case is recorded, who follows up with Intigo, when the client receives an update, and when an issue is escalated.",
+        "fr": "Définissez un parcours clair pour les clients qui signalent des problèmes de livraison Intigo, des réclamations ou des incidents de plateforme. Précisez comment chaque cas est enregistré, qui relance Intigo, quand le client reçoit une mise à jour et quand le problème est escaladé."
+      }
+    }
+  ]
 }
