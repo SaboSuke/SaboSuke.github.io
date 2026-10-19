@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "exportedAt": "2026-10-19T00:00:00.000Z",
+  "exportedBy": "Wolvo Team",
   "calculator": {
     "fee": "1",
     "orders": "80",
